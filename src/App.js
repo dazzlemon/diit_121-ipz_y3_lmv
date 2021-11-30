@@ -106,7 +106,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   textInputTitle: {
-    fontSize: 18,
+    textTransform: 'uppercase',
+    fontSize: 14,
     color: '#707070',
   },
   bg: {
