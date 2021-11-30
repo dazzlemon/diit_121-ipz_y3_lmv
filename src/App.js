@@ -58,12 +58,16 @@ const ReactApp = () => {
             title = 'Continue'
             color = '#6665d2'
           />
-          <Text>
+          <Text style = {styles.clickableText}>
             Already have an account?
           </Text>
 
-          <Text>
-            By registering, you agree to AppName Terms of Service and Privacy Policy.
+          <Text style = {styles.tosText}>
+            {'By registering, you agree to AppName '}
+            <Text style = {styles.clickableText}>Terms of Service</Text>
+            {' and '} 
+            <Text style = {styles.clickableText}>Privacy Policy</Text>
+            .
           </Text>
 
         </View>
@@ -109,7 +113,14 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
     position: 'absolute',
     inset: '0 0 0 0',
-  }
+  },
+  clickableText: {
+    color: '#30b2fd',
+  },
+  tosText: {
+    color: '#404040',
+    fontSize: 12,
+  },
 });
 
 export default ReactApp;
