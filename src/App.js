@@ -10,14 +10,16 @@ const ReactApp = () => {
       source = {bgImage}
       style = {styles.bg}
     >
-      <View style = {styles.screen}>
-        <View style = {styles.box}>
+      <View style = {styles.box}>
+        <View style = {styles.inBox}>
           <Text
             style = {styles.textMain}
           >
             Create an account
           </Text>
+        </View>
 
+        <View style = {styles.inBox}>
           <Text
             style = {styles.textInputTitle}
           >
@@ -26,7 +28,9 @@ const ReactApp = () => {
           <TextInput
             style = {styles.input}
           />
+        </View>
 
+        <View style = {styles.inBox}>
           <Text
             style = {styles.textInputTitle}
           >
@@ -35,7 +39,9 @@ const ReactApp = () => {
           <TextInput
             style = {styles.input}
           />
+        </View>
 
+        <View style = {styles.inBox}>
           <Text
             style = {styles.textInputTitle}
           >
@@ -44,7 +50,9 @@ const ReactApp = () => {
           <TextInput
             style = {styles.input}
           />
+        </View>
 
+        <View style = {styles.inBox}>
           <Text
             style = {styles.textInputTitle}
           >
@@ -53,7 +61,9 @@ const ReactApp = () => {
           <TextInput
             style = {styles.input}
           />
+        </View>
 
+        <View style = {styles.inBox}>
           <Button
             title = 'Continue'
             color = '#6665d2'
@@ -69,7 +79,6 @@ const ReactApp = () => {
             <Text style = {styles.clickableText}>Privacy Policy</Text>
             .
           </Text>
-
         </View>
       </View>
     </ImageBackground>
@@ -86,7 +95,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1e1e1e',
   },
   box: {
-    padding: 40,
+    padding: 33,
     backgroundColor: '#1e2124',
     borderRadius: 7,
   },
@@ -100,13 +109,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#707070',
   },
-  screen: {
-    flex: 1,
+  bg: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 150,
-  },
-  bg: {
     flex: 1,
     height: '100%',
     width: '100%',
@@ -121,6 +126,9 @@ const styles = StyleSheet.create({
     color: '#404040',
     fontSize: 12,
   },
+  inBox: {
+    padding: 7,
+  }
 });
 
 export default ReactApp;
