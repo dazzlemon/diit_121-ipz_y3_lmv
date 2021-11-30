@@ -1,66 +1,72 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Button, TextInput, ImageBackground } from 'react-native';
 
 const ReactApp = () => {
   const [counter, setCounter] = useState(0);
   return (
     <View style = {styles.screen}>
-      <View style = {styles.box}>
-        <Text
-          style = {styles.textMain}
-        >
-          Create an account
-        </Text>
+      <ImageBackground
+        source = {require('./assets/bg.jpg')}
+        style = {styles.bg}
+        resizeMode = 'cover'
+      >
+        <View style = {styles.box}>
+          <Text
+            style = {styles.textMain}
+          >
+            Create an account
+          </Text>
 
-        <Text
-          style = {styles.textInputTitle}
-        >
-          email
-        </Text>
-        <TextInput
-          style = {styles.input}
-        />
+          <Text
+            style = {styles.textInputTitle}
+          >
+            email
+          </Text>
+          <TextInput
+            style = {styles.input}
+          />
 
-        <Text
-          style = {styles.textInputTitle}
-        >
-          username
-        </Text>
-        <TextInput
-          style = {styles.input}
-        />
+          <Text
+            style = {styles.textInputTitle}
+          >
+            username
+          </Text>
+          <TextInput
+            style = {styles.input}
+          />
 
-        <Text
-          style = {styles.textInputTitle}
-        >
-          password
-        </Text>
-        <TextInput
-          style = {styles.input}
-        />
+          <Text
+            style = {styles.textInputTitle}
+          >
+            password
+          </Text>
+          <TextInput
+            style = {styles.input}
+          />
 
-        <Text
-          style = {styles.textInputTitle}
-        >
-          date of birth
-        </Text>
-        <TextInput
-          style = {styles.input}
-        />
+          <Text
+            style = {styles.textInputTitle}
+          >
+            date of birth
+          </Text>
+          <TextInput
+            style = {styles.input}
+          />
 
-        <Button
-          title = 'Continue'
-          color = '#6665d2'
-        />
-        <Text>
-          Already have an account?
-        </Text>
+          <Button
+            title = 'Continue'
+            color = '#6665d2'
+          />
+          <Text>
+            Already have an account?
+          </Text>
 
-        <Text>
-          By registering, you agree to AppName Terms of Service and Privacy Policy.
-        </Text>
+          <Text>
+            By registering, you agree to AppName Terms of Service and Privacy Policy.
+          </Text>
 
-      </View>
+        </View>
+      </ImageBackground>
     </View>
   )
 };
@@ -94,6 +100,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 150,
+  },
+  bg: {
+    flex: 1
   }
 });
 
