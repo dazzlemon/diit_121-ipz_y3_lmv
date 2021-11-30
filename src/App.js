@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, TextInput, ImageBackground } from 'react-native';
 
+const bgImage = process.env.PUBLIC_URL + '/assets/images/bg.jpg';
+
 const ReactApp = () => {
   const [counter, setCounter] = useState(0);
   return (
-    <View style = {styles.screen}>
-      <ImageBackground
-        source = {require('./assets/bg.jpg')}
-        style = {styles.bg}
-        resizeMode = 'cover'
-      >
+    <ImageBackground
+      source = {bgImage}
+      style = {styles.bg}
+    >
+      <View style = {styles.screen}>
         <View style = {styles.box}>
           <Text
             style = {styles.textMain}
@@ -66,8 +67,8 @@ const ReactApp = () => {
           </Text>
 
         </View>
-      </ImageBackground>
-    </View>
+      </View>
+    </ImageBackground>
   )
 };
 
@@ -102,7 +103,9 @@ const styles = StyleSheet.create({
     marginTop: 150,
   },
   bg: {
-    flex: 1
+    flex: 1,
+    height: '100%',
+    width: '100%',
   }
 });
 
