@@ -132,13 +132,28 @@ const colors = {
   itemFontColor: '#707070',
 };
 
+const sizes = {
+  height: 40,
+  borderRadius: 5,
+  borderWidth: 1,
+}
+
 const styles = StyleSheet.create({
   input: {
-    borderWidth: 1,
+    borderWidth: sizes.borderWidth,
     borderColor: colors.borderColor,
-    borderRadius: 5,
-    height: 40,
+    borderRadius: sizes.borderWidth,
+    height: sizes.height,
     backgroundColor: colors.itemBg,
+  },
+  picker: {
+    backgroundColor: colors.itemBg,
+    borderColor: colors.borderColor,
+    borderWidth: sizes.borderWidth,
+    height: sizes.height,
+    color: colors.itemFontColor,
+    fontWeight: 'bold',
+    borderRadius: sizes.borderRadius,
   },
   box: {
     padding: 25,
@@ -165,7 +180,7 @@ const styles = StyleSheet.create({
     width: '100%',
     resizeMode: 'stretch',
     position: 'absolute',
-    inset: '0 0 0 0',
+    inset: '0 0 0 0',// fullscreen
   },
   clickableText: {
     color: '#30b2fd',
@@ -179,9 +194,9 @@ const styles = StyleSheet.create({
     padding: 7,
   },
   button: {
-    borderRadius: 7,
+    borderRadius: sizes.borderRadius,
     backgroundColor: '#6665d2',
-    height: 40,
+    height: sizes.height,
   },
   buttonText: {
     color: colors.white,
@@ -192,15 +207,6 @@ const styles = StyleSheet.create({
   clickableTextHover: {
     textDecorationLine: 'underline',
     cursor: 'pointer',
-  },
-  picker: {
-    backgroundColor: colors.itemBg,
-    borderColor: colors.borderColor,
-    borderWidth: 1,
-    height: 40,
-    color: colors.itemFontColor,
-    fontWeight: 'bold',
-    borderRadius: 7,
   },
 });
 
