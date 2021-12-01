@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, TextInput, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, Button, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
 
 const bgImage = process.env.PUBLIC_URL + '/assets/images/bg.jpg';
 
@@ -64,10 +64,11 @@ const ReactApp = () => {
         </View>
 
         <View style = {styles.inBox}>
-          <Button
-            title = 'Continue'
-            color = '#6665d2'
-          />
+          <TouchableOpacity style = {styles.button}>
+            <Text style = {styles.buttonText}>
+              Continue
+            </Text>
+          </TouchableOpacity>
           <Text style = {styles.clickableText}>
             Already have an account?
           </Text>
@@ -88,10 +89,9 @@ const ReactApp = () => {
 const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
-    borderColor: '#000000',
+    borderColor: '#141414',
     borderRadius: 5,
     height: 40,
-    margin: 2,
     backgroundColor: '#1e1e1e',
   },
   box: {
@@ -129,6 +129,18 @@ const styles = StyleSheet.create({
   },
   inBox: {
     padding: 7,
+  },
+  button: {
+    borderRadius: 7,
+    backgroundColor: '#6665d2',
+    height: 40,
+    borderColor: '#1e2124',// hack because its bit to wide otherwise
+  },
+  buttonText: {
+    color: '#ffffff',
+    textAlign: 'center',
+    padding: 10,
+    fontWeight: 'bold',
   }
 });
 
