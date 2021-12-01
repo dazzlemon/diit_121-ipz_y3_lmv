@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.itemBg,
     color: colors.itemFontColor,
     fontSize: 18,
+    borderStyle: 'inset',
   },
   picker: {
     backgroundColor: colors.itemBg,
@@ -159,6 +160,7 @@ const styles = StyleSheet.create({
     color: colors.itemFontColor,
     fontWeight: 'bold',
     borderRadius: sizes.borderRadius,
+    borderStyle: 'inset',
   },
   box: {
     padding: 25,
