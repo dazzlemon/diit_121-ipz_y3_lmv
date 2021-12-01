@@ -125,13 +125,20 @@ const ReactApp = () => {
   )
 };
 
+const colors = {
+  borderColor: '#141414',
+  itemBg: '#1e1e1e',
+  white: '#ffffff',
+  itemFontColor: '#707070',
+};
+
 const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
-    borderColor: '#141414',
+    borderColor: colors.borderColor,
     borderRadius: 5,
     height: 40,
-    backgroundColor: '#1e1e1e',
+    backgroundColor: colors.itemBg,
   },
   box: {
     padding: 25,
@@ -139,7 +146,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
   textMain: {
-    color: '#ffffff',
+    color: colors.white,
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -147,7 +154,7 @@ const styles = StyleSheet.create({
   textInputTitle: {
     textTransform: 'uppercase',
     fontSize: 14,
-    color: '#707070',
+    color: colors.itemFontColor,
     marginBottom: 5,
   },
   bg: {
@@ -177,7 +184,7 @@ const styles = StyleSheet.create({
     height: 40,
   },
   buttonText: {
-    color: '#ffffff',
+    color: colors.white,
     textAlign: 'center',
     padding: 10,
     fontWeight: 'bold',
@@ -187,11 +194,11 @@ const styles = StyleSheet.create({
     cursor: 'pointer',
   },
   picker: {
-    backgroundColor: '#1e1e1e',
-    borderColor: '#141414',
+    backgroundColor: colors.itemBg,
+    borderColor: colors.borderColor,
     borderWidth: 1,
     height: 40,
-    color: '#707070',
+    color: colors.itemFontColor,
     fontWeight: 'bold',
     borderRadius: 7,
   },
