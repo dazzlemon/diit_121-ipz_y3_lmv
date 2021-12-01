@@ -8,6 +8,11 @@ const ReactApp = () => {
   const [hasAccount, setHasAccount] = useState(false);
   const [isReadingTos, setIsReadingTos] = useState(false);
   const [isReadingPp, setIsReadingPp] = useState(false);
+  const [email, setEmail] = useState()
+  const [username, setUsername] = useState()
+  const [password, setPassword] = useState()
+  // jan 1 of current year
+  const [birthday, setBirthday] = useState(new Date(new Date().getFullYear), 0, 1)
 
   return (
     <ImageBackground
