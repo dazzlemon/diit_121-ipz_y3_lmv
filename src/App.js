@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+import Select from 'react-select-native';
 
 const bgImage = process.env.PUBLIC_URL + '/assets/images/bg.jpg';
 
@@ -63,11 +63,33 @@ const ReactApp = () => {
             date of birth
           </Text>
           <View style = {{flexDirection: 'row'}}>
-            <Picker selectedValue = {'Select'}>
-              <Picker.Item label = '1' value = '1' />
-              <Picker.Item label = '2' value = '2' />
-              <Picker.Item label = '3' value = '3' />
-            </Picker>
+
+            {/* Month */}
+            <Select
+              options = {[
+                { label: 'Jan', value: 1 },
+                { label: 'Feb', value: 2 },
+                { label: 'Mar', value: 3 },
+              ]}
+              defaultValue = 'Select'
+              unselected = {{
+                value: '0',
+                label: 'Select'
+              }}
+            />
+
+            <Select
+              options = {[
+                { label: 1, value: 1 },
+                { label: 2, value: 2 },
+                { label: 3, value: 3 },
+              ]}
+              defaultValue = 'Select'
+              unselected = {{
+                value: '0',
+                label: 'Select'
+              }}
+            />
           </View>
         </View>
 
