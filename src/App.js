@@ -98,6 +98,7 @@ const ReactApp = () => {
             onMouseLeave = {() => setHasAccount(false)}
             style = {hasAccount ? [styles.clickableText, styles.clickableTextHover]
                                 : styles.clickableText}
+            onPress = {() => alert('Redirect to login page')}
           >
             Already have an account?
           </Text>
@@ -109,6 +110,7 @@ const ReactApp = () => {
               onMouseLeave = {() => setIsReadingTos(false)}
               style = {isReadingTos ? [styles.clickableText, styles.clickableTextHover]
                                     : styles.clickableText}
+              onPress = {() => alert('Redirect to ToS')}
             >Terms of Service</Text>
             {' and '} 
             <Text
@@ -116,6 +118,7 @@ const ReactApp = () => {
               onMouseLeave = {() => setIsReadingPp(false)}
               style = {isReadingPp ? [styles.clickableText, styles.clickableTextHover]
                                    : styles.clickableText}
+              onPress = {() => alert('Redirect to PP')}
             >Privacy Policy</Text>
             .
           </Text>
@@ -142,9 +145,11 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: sizes.borderWidth,
     borderColor: colors.borderColor,
-    borderRadius: sizes.borderWidth,
+    borderRadius: sizes.borderRadius,
     height: sizes.height,
     backgroundColor: colors.itemBg,
+    color: colors.itemFontColor,
+    fontSize: 18,
   },
   picker: {
     backgroundColor: colors.itemBg,
@@ -171,6 +176,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.itemFontColor,
     marginBottom: 5,
+    fontWeight: 'bold',
   },
   bg: {
     alignItems: 'center',
