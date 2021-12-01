@@ -65,24 +65,24 @@ const ReactApp = () => {
           <View style = {{flexDirection: 'row', width: '100%'}}>
 
             {/* Month */}
-            <Picker style = {{width: '45%'}}>
+            <Picker style = {[styles.picker, {width: '40%'}]}>
               <Picker.Item label = 'Jan' value = '1' />
               <Picker.Item label = 'Feb' value = '2' />
               <Picker.Item label = 'Mar' value = '3' />
             </Picker>
 
             {/* Day */}
-            <Picker style = {{width: '25%'}}>
+            <Picker style = {[styles.picker, {width: '20%', marginHorizontal: '10%'}]}>
               <Picker.Item label = '1' value = '1' />
               <Picker.Item label = '2' value = '2' />
               <Picker.Item label = '3' value = '3' />
             </Picker>
 
             {/* Year */}
-            <Picker style = {{width: '30%'}}>
-              <Picker label = '2021' value = '2021' />
-              <Picker label = '2020' value = '2020' />
-              <Picker label = '2019' value = '2019' />
+            <Picker style = {[styles.picker, {width: '30%'}]}>
+              <Picker.Item label = '2021' value = '2021' />
+              <Picker.Item label = '2020' value = '2020' />
+              <Picker.Item label = '2019' value = '2019' />
             </Picker>
           </View>
         </View>
@@ -175,7 +175,6 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     backgroundColor: '#6665d2',
     height: 40,
-    borderColor: '#1e2124',// hack because its bit to wide otherwise
   },
   buttonText: {
     color: '#ffffff',
@@ -186,6 +185,15 @@ const styles = StyleSheet.create({
   clickableTextHover: {
     textDecorationLine: 'underline',
     cursor: 'pointer',
+  },
+  picker: {
+    backgroundColor: '#1e1e1e',
+    borderColor: '#141414',
+    borderWidth: 1,
+    height: 40,
+    color: '#707070',
+    fontWeight: 'bold',
+    borderRadius: 7,
   },
 });
 
