@@ -76,21 +76,30 @@ const ReactApp = () => {
           <View style = {{flexDirection: 'row', width: '100%'}}>
 
             {/* Month */}
-            <Picker style = {[styles.picker, {width: '40%'}]}>
-              <Picker.Item label = 'Jan' value = '1' />
-              <Picker.Item label = 'Feb' value = '2' />
-              <Picker.Item label = 'Mar' value = '3' />
+            <Picker
+              style = {[styles.picker, {width: '40%'}]}
+              onValueChange = {(val, id) => birthday.setMonth(val)}  
+            >
+              <Picker.Item label = 'Jan' value = '0' />
+              <Picker.Item label = 'Feb' value = '1' />
+              <Picker.Item label = 'Mar' value = '2' />
             </Picker>
 
             {/* Day */}
-            <Picker style = {[styles.picker, {width: '20%', marginHorizontal: '10%'}]}>
+            <Picker
+              style = {[styles.picker, {width: '20%', marginHorizontal: '10%'}]}
+              onValueChange = {(val, id) => birthday.setDate(val)}  
+            >
               <Picker.Item label = '1' value = '1' />
               <Picker.Item label = '2' value = '2' />
               <Picker.Item label = '3' value = '3' />
             </Picker>
 
             {/* Year */}
-            <Picker style = {[styles.picker, {width: '30%'}]}>
+            <Picker
+              style = {[styles.picker, {width: '30%'}]}
+              onValueChange = {(val, id) => birthday.setFullYear(val)}
+            >
               <Picker.Item label = '2021' value = '2021' />
               <Picker.Item label = '2020' value = '2020' />
               <Picker.Item label = '2019' value = '2019' />
@@ -101,7 +110,7 @@ const ReactApp = () => {
         <View style = {styles.inBox}>
           <TouchableOpacity
             style = {styles.button}
-            onPress = {() => register(email, username, password.hashCode(), birthday)}
+            onPress = {() => register(email, username, password, birthday)}
           >
             <Text style = {styles.buttonText}>
               Continue
@@ -142,20 +151,40 @@ const ReactApp = () => {
   )
 };
 
-function register(email, username, passwordHash, birthday) {
+function register(email, username, password, birthday) {
+  var nullVal = false
+  if (email == null) {
+    alert('you skipped email');
+    nullVal = true;
+  }
+  if (username == null) {
+    alert('you skipped username');
+    nullVal = true;
+  }
+  if (password == null) {
+    alert('you skipped password');
+    nullVal = true;
+  }
+
+  if (nullVal) {
+    return;
+  }
+
+
   var isEmailCorrect = true;
-  var isEmailRegistered = false;
+  var isEmailRegistered = email === 'registered@email.com';
   var isBirthdayCorrect = true;
+
   var isGoodEmail = false;
 
   if (isEmailCorrect) {
     if (isEmailRegistered) {
-      // error email is registered
+      alert('email is already registered');// todo
     } else {
       isGoodEmail = true;     
     }
   } else {
-    // error incorrect email
+    alert('incorrect email');// todo
   }
 
   if (isBirthdayCorrect) {
@@ -163,12 +192,12 @@ function register(email, username, passwordHash, birthday) {
       alert(`
         Email: ${email}
         Username: ${username}
-        Password hash: ${passwordHash}
+        Password hash: ${password.hashCode()}
         birthday: ${birthday.toDateString()}
       `)
     }
   } else {
-    // error incorrect birthday
+    alert('incorrect birthday');// todo
   }
 }
 
