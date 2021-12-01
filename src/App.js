@@ -12,7 +12,7 @@ const ReactApp = () => {
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
   // jan 1 of current year
-  const [birthday, setBirthday] = useState(new Date(new Date().getFullYear), 0, 1)
+  const [birthday, setBirthday] = useState(new Date(new Date().getFullYear(), 0, 1))
 
   return (
     <ImageBackground
@@ -37,6 +37,7 @@ const ReactApp = () => {
           <TextInput
             style = {styles.input}
             spellCheck = {false}
+            onChangeText = {(text) => setEmail(text)}
           />
         </View>
 
@@ -49,6 +50,7 @@ const ReactApp = () => {
           <TextInput
             spellCheck = {false}
             style = {styles.input}
+            onChangeText = {(text) => setUsername(text)}
           />
         </View>
 
@@ -61,6 +63,7 @@ const ReactApp = () => {
           <TextInput
             style = {styles.input}
             secureTextEntry = {true}
+            onChangeText = {(text) => setPassword(text)}
           />
         </View>
 
@@ -96,7 +99,15 @@ const ReactApp = () => {
         </View>
 
         <View style = {styles.inBox}>
-          <TouchableOpacity style = {styles.button}>
+          <TouchableOpacity
+            style = {styles.button}
+            onPress = {() => alert(`
+              Email: ${email}
+              Username: ${username}
+              Password hash: ${password.hashCode()}
+              birthday: ${birthday.toDateString()}
+            `)}
+          >
             <Text style = {styles.buttonText}>
               Continue
             </Text>
@@ -135,6 +146,19 @@ const ReactApp = () => {
     </ImageBackground>
   )
 };
+
+String.prototype.hashCode = function() {
+  var hash = 0;
+  if (this.length == 0) {
+      return hash;
+  }
+  for (var i = 0; i < this.length; i++) {
+      var char = this.charCodeAt(i);
+      hash = ((hash<<5)-hash)+char;
+      hash = hash & hash; // Convert to 32bit integer
+  }
+  return hash;
+}
 
 const colors = {
   borderColor: '#141414',
