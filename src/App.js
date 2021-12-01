@@ -36,6 +36,7 @@ const ReactApp = () => {
           </Text>
           <TextInput
             style = {styles.input}
+            spellCheck = {false}
           />
         </View>
 
@@ -46,6 +47,7 @@ const ReactApp = () => {
             username
           </Text>
           <TextInput
+            spellCheck = {false}
             style = {styles.input}
           />
         </View>
