@@ -65,47 +65,25 @@ const ReactApp = () => {
           <View style = {{flexDirection: 'row', width: '100%'}}>
 
             {/* Month */}
-            <Picker
-              style = {{width: '45%'}}
-              
-              defaultValue = 'Select'
-              unselected = {{
-                value: '0',
-                label: 'Select'
-              }}
-            >
+            <Picker style = {{width: '45%'}}>
               <Picker.Item label = 'Jan' value = '1' />
               <Picker.Item label = 'Feb' value = '2' />
               <Picker.Item label = 'Mar' value = '3' />
             </Picker>
 
-            {/* Day
-            <Select
-              options = {[
-                { label: 1, value: 1 },
-                { label: 2, value: 2 },
-                { label: 3, value: 3 },
-              ]}
-              defaultValue = 'Select'
-              unselected = {{
-                value: '0',
-                label: 'Select'
-              }}
-            />
+            {/* Day */}
+            <Picker style = {{width: '25%'}}>
+              <Picker.Item label = '1' value = '1' />
+              <Picker.Item label = '2' value = '2' />
+              <Picker.Item label = '3' value = '3' />
+            </Picker>
 
-            {/* Year }
-            <Select
-              options = {[
-                { label: 2021, value: 2021 },
-                { label: 2020, value: 2020 },
-                { label: 2019, value: 2019 },
-              ]}
-              defaultValue = 'Select'
-              unselected = {{
-                value: '0',
-                label: 'Select'
-              }}
-            /> */}
+            {/* Year */}
+            <Picker style = {{width: '30%'}}>
+              <Picker label = '2021' value = '2021' />
+              <Picker label = '2020' value = '2020' />
+              <Picker label = '2019' value = '2019' />
+            </Picker>
           </View>
         </View>
 
