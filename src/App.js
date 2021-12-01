@@ -101,12 +101,7 @@ const ReactApp = () => {
         <View style = {styles.inBox}>
           <TouchableOpacity
             style = {styles.button}
-            onPress = {() => alert(`
-              Email: ${email}
-              Username: ${username}
-              Password hash: ${password.hashCode()}
-              birthday: ${birthday.toDateString()}
-            `)}
+            onPress = {() => register(email, username, password.hashCode(), birthday)}
           >
             <Text style = {styles.buttonText}>
               Continue
@@ -146,6 +141,36 @@ const ReactApp = () => {
     </ImageBackground>
   )
 };
+
+function register(email, username, passwordHash, birthday) {
+  var isEmailCorrect = true;
+  var isEmailRegistered = false;
+  var isBirthdayCorrect = true;
+  var isGoodEmail = false;
+
+  if (isEmailCorrect) {
+    if (isEmailRegistered) {
+      // error email is registered
+    } else {
+      isGoodEmail = true;     
+    }
+  } else {
+    // error incorrect email
+  }
+
+  if (isBirthdayCorrect) {
+    if (isGoodEmail) {
+      alert(`
+        Email: ${email}
+        Username: ${username}
+        Password hash: ${passwordHash}
+        birthday: ${birthday.toDateString()}
+      `)
+    }
+  } else {
+    // error incorrect birthday
+  }
+}
 
 String.prototype.hashCode = function() {
   var hash = 0;
