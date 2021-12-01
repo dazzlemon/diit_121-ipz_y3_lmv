@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
 
 const bgImage = process.env.PUBLIC_URL + '/assets/images/bg.jpg';
 
 const ReactApp = () => {
-  const [counter, setCounter] = useState(0);
+  const [hasAccount, setHasAccount] = useState(false);
+  const [isReadingTos, setIsReadingTos] = useState(false);
+  const [isReadingPp, setIsReadingPp] = useState(false);
+
   return (
     <ImageBackground
       source = {bgImage}
@@ -69,15 +72,30 @@ const ReactApp = () => {
               Continue
             </Text>
           </TouchableOpacity>
-          <Text style = {styles.clickableText}>
+          <Text
+            onMouseEnter = {() => setHasAccount(true)}
+            onMouseLeave = {() => setHasAccount(false)}
+            style = {hasAccount ? [styles.clickableText, styles.clickableTextHover]
+                                : styles.clickableText}
+          >
             Already have an account?
           </Text>
 
           <Text style = {styles.tosText}>
             {'By registering, you agree to AppName '}
-            <Text style = {styles.clickableText}>Terms of Service</Text>
+            <Text
+              onMouseEnter = {() => setIsReadingTos(true)}
+              onMouseLeave = {() => setIsReadingTos(false)}
+              style = {isReadingTos ? [styles.clickableText, styles.clickableTextHover]
+                                    : styles.clickableText}
+            >Terms of Service</Text>
             {' and '} 
-            <Text style = {styles.clickableText}>Privacy Policy</Text>
+            <Text
+              onMouseEnter = {() => setIsReadingPp(true)}
+              onMouseLeave = {() => setIsReadingPp(false)}
+              style = {isReadingPp ? [styles.clickableText, styles.clickableTextHover]
+                                   : styles.clickableText}
+            >Privacy Policy</Text>
             .
           </Text>
         </View>
@@ -95,7 +113,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1e1e1e',
   },
   box: {
-    padding: 33,
+    padding: 25,
     backgroundColor: '#1e2124',
     borderRadius: 7,
   },
@@ -109,6 +127,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontSize: 14,
     color: '#707070',
+    marginBottom: 5,
   },
   bg: {
     alignItems: 'center',
@@ -126,6 +145,7 @@ const styles = StyleSheet.create({
   tosText: {
     color: '#404040',
     fontSize: 12,
+    marginTop: 15,
   },
   inBox: {
     padding: 7,
@@ -141,7 +161,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 10,
     fontWeight: 'bold',
-  }
+  },
+  clickableTextHover: {
+    textDecorationLine: 'underline',
+    cursor: 'pointer',
+  },
 });
 
 export default ReactApp;
