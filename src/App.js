@@ -58,6 +58,7 @@ const ReactApp = () => {
           </Text>
           <TextInput
             style = {styles.input}
+            secureTextEntry = {true}
           />
         </View>
 
