@@ -40,11 +40,14 @@ const ReactApp = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   // jan 1 of current year
-  const [birthday, setBirthday] = useState(new Date(new Date().getFullYear(), 0, 1));
+  const [birthday, setBirthday] = useState(1);
+  const [birthMonth, setBirthMonth] = useState(0);
+  const [birthYear, setBirthYear] = useState(new Date().getFullYear(), 0, 1);
 
   const [noEmail, setNoEmail] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [isEmailRegistered, setIsEmailRegistered] = useState(false);
+  const [isValidBirthday, setIsValidBirthday] = useState(true);
 
   return (
     <ImageBackground
@@ -94,13 +97,14 @@ const ReactApp = () => {
             style = {styles.textInputTitle}
           >
             date of birth
+            
           </Text>
           <View style = {{flexDirection: 'row', width: '100%'}}>
 
             {/* Month */}
             <Picker
               style = {[styles.picker, {width: '40%'}]}
-              onValueChange = {(val, id) => birthday.setMonth(val)}  
+              onValueChange = {(val, id) => setBirthMonth(val)}  
             >
               <Picker.Item label = 'Jan' value = '0' />
               <Picker.Item label = 'Feb' value = '1' />
@@ -110,23 +114,31 @@ const ReactApp = () => {
             {/* Day */}
             <Picker
               style = {[styles.picker, {width: '20%', marginHorizontal: '10%'}]}
-              onValueChange = {(val, id) => birthday.setDate(val)}  
+              onValueChange = {(val, id) => setBirthday(val)}  
             >
               <Picker.Item label = '1' value = '1' />
               <Picker.Item label = '2' value = '2' />
               <Picker.Item label = '3' value = '3' />
+              <Picker.Item label = '28' value = '28' />
+              <Picker.Item label = '29' value = '29' />
+              <Picker.Item label = '30' value = '30' />
+              <Picker.Item label = '31' value = '31' />
             </Picker>
 
             {/* Year */}
             <Picker
               style = {[styles.picker, {width: '30%'}]}
-              onValueChange = {(val, id) => birthday.setFullYear(val)}
+              onValueChange = {(val, id) => setBirthYear(val)}
             >
               <Picker.Item label = '2021' value = '2021' />
               <Picker.Item label = '2020' value = '2020' />
               <Picker.Item label = '2019' value = '2019' />
             </Picker>
           </View>
+          <Text style = {styles.textInputError}>
+              {!isValidBirthday ? 'Please enter a valid date of birth'
+                                : null}
+            </Text>
         </View>
 
         <View style = {styles.inBox}>
@@ -140,8 +152,14 @@ const ReactApp = () => {
               var isEmailRegistered_ = isEmailValid_ && email == 'registered@email.com';
               setIsEmailRegistered(isEmailRegistered_);
 
-              if (isEmailValid_ && !isEmailRegistered_) {
-                register(email, username, password, birthday);
+              var birthdate = new Date(birthYear, birthMonth, birthday);
+              var isValidBirthday_ = birthdate.getDate() == birthday
+                                  && birthdate.getFullYear() == birthYear
+                                  && birthdate.getMonth() == birthMonth;
+              setIsValidBirthday(isValidBirthday_);
+
+              if (isEmailValid_ && !isEmailRegistered_ && isValidBirthday_) {
+                register(email, username, password, birthdate);
               }
             }}
           >
