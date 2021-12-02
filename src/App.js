@@ -1,8 +1,31 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { usePropsResolution } from 'native-base';
 
 const bgImage = process.env.PUBLIC_URL + '/assets/images/bg.jpg';
+
+function CheckInput(props) {
+  var errorMessage = props.errorMessage();
+  var isError = errorMessage != null;
+  return (
+    <View style = {styles.inBox}>
+      <Text style = {styles.textInputTitle}>
+        email
+        <Text style = {styles.textInputError}>
+          {isError ? " - " + errorMessage
+                   : null}
+        </Text>
+      </Text>
+      <TextInput
+        spellCheck = {false}
+        style = {isError ? [styles.input, {borderColor: colors.errorRed, borderWidth: 2}]
+                         : styles.input}
+        onChangeText = {props.onChangeText}
+      />
+    </View>
+  )
+}
 
 const ReactApp = () => {
   const [hasAccount, setHasAccount] = useState(false);
@@ -28,18 +51,10 @@ const ReactApp = () => {
           </Text>
         </View>
 
-        <View style = {styles.inBox}>
-          <Text
-            style = {styles.textInputTitle}
-          >
-            email
-          </Text>
-          <TextInput
-            style = {styles.input}
-            spellCheck = {false}
-            onChangeText = {(text) => setEmail(text)}
-          />
-        </View>
+        <CheckInput
+          errorMessage = {() => "error"}
+          onChangeText = {(text) => setEmail(text)}
+        />
 
         <View style = {styles.inBox}>
           <Text
@@ -219,6 +234,7 @@ const colors = {
   itemBg: '#1e1e1e',
   white: '#ffffff',
   itemFontColor: '#707070',
+  errorRed: '#ff1f1f',
 };
 
 const sizes = {
@@ -302,6 +318,9 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     cursor: 'pointer',
   },
+  textInputError: {
+    color : colors.errorRed,
+  }
 });
 
 export default ReactApp;
