@@ -43,7 +43,7 @@ const ReactApp = () => {
   // jan 1 of current year
   const [birthday, setBirthday] = useState(1);
   const [birthMonth, setBirthMonth] = useState(0);
-  const [birthYear, setBirthYear] = useState(new Date().getFullYear(), 0, 1);
+  const [birthYear, setBirthYear] = useState(new Date().getFullYear());
 
   const [noEmail, setNoEmail] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(true);
