@@ -10,7 +10,8 @@ function isEmail(str) {
 }
 
 function CheckInput(props) {
-  var errorMessage = props.errorMessage();
+  var errorMessage = props.isRequiredError ? 'this field is required'
+                                           : props.errorMessage?.();
   var isError = errorMessage != null;
   return (
     <View style = {styles.inBox}>
@@ -67,10 +68,8 @@ const ReactApp = () => {
 
         <CheckInput
           title = {'email'}
+          isRequiredError = {noEmail}
           errorMessage = {() => {
-            if (noEmail) {
-              return 'this field is required';
-            }
             if (!isEmailValid) {
               return 'please enter an email address';
             }
@@ -83,21 +82,13 @@ const ReactApp = () => {
 
         <CheckInput
           title = {'username'}
-          errorMessage = {() => {
-            if (noUsername) {
-              return 'this field is required';
-            }
-          }}
+          isRequiredError = {noUsername}
           onChangeText = {(text) => setUsername(text)}
         />
 
         <CheckInput
           title = {'password'}
-          errorMessage = {() => {
-            if (noPassword) {
-              return 'this field is required';
-            }
-          }}
+          isRequiredError = {noPassword}
           onChangeText = {(text) => setPassword(text)}
           secureTextEntry = {true}
         />
