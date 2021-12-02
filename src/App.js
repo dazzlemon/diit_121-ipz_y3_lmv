@@ -144,11 +144,14 @@ const ReactApp = () => {
           <TouchableOpacity
             style = {styles.button}
             onPress = {() => {
-              setNoEmail(email == null || email == '');
-              setIsEmailValid(!noEmail && isEmail(email));
-              setIsEmailRegistered(isEmailValid && email == 'registered@email.com');
+              var noEmail_ = email == null || email == '';
+              setNoEmail(noEmail_);
+              var isEmailValid_ = !noEmail_ && isEmail(email);
+              setIsEmailValid(isEmailValid_);
+              var isEmailRegistered_ = isEmailValid_ && email == 'registered@email.com';
+              setIsEmailRegistered(isEmailRegistered_);
 
-              if (isEmailValid) {
+              if (isEmailValid_ && !isEmailRegistered_) {
                 register(email, username, password, birthday);
               }
             }}
