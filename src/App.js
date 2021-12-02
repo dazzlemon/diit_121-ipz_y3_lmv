@@ -62,11 +62,9 @@ const ReactApp = () => {
         <CheckInput
           errorMessage = {() => {
             if (noEmail) {
-              console.log(noEmail);
               return "this field is required";
             }
             if (!isEmailValid) {
-              console.log(isEmailValid);
               return "please enter an email address";
             }
             if (isEmailRegistered) {
