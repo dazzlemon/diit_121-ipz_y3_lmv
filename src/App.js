@@ -48,6 +48,8 @@ const ReactApp = () => {
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [isEmailRegistered, setIsEmailRegistered] = useState(false);
   const [isValidBirthday, setIsValidBirthday] = useState(true);
+  const [noUsername, setNoUsername] = useState(false);
+  const [noPassword, setNoPassword] = useState(false);
 
   return (
     <ImageBackground
@@ -81,13 +83,21 @@ const ReactApp = () => {
 
         <CheckInput
           title = {'username'}
-          errorMessage = {() => null}
+          errorMessage = {() => {
+            if (noUsername) {
+              return 'this field is required';
+            }
+          }}
           onChangeText = {(text) => setUsername(text)}
         />
 
         <CheckInput
           title = {'password'}
-          errorMessage = {() => null}
+          errorMessage = {() => {
+            if (noPassword) {
+              return 'this field is required';
+            }
+          }}
           onChangeText = {(text) => setPassword(text)}
           secureTextEntry = {true}
         />
@@ -158,7 +168,12 @@ const ReactApp = () => {
                                   && birthdate.getMonth() == birthMonth;
               setIsValidBirthday(isValidBirthday_);
 
-              if (isEmailValid_ && !isEmailRegistered_ && isValidBirthday_) {
+              var noUsername = username == null || username == '';
+              setNoUsername(noUsername);
+              var noPassword = password == null || password == '';
+              setNoPassword(noPassword);
+
+              if (isEmailValid_ && !isEmailRegistered_ && isValidBirthday_ && !noPassword && !noUsername) {
                 register(email, username, password, birthdate);
               }
             }}
