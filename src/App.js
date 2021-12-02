@@ -195,44 +195,12 @@ const ReactApp = () => {
 };
 
 function register(email, username, password, birthday) {
-  if (email == null) {
-    return
-  }
-  if (username == null) {
-    return
-  }
-  if (password == null) {
-    return
-  }
-
-  var isEmailCorrect = true;
-  var isEmailRegistered = email === 'registered@email.com';
-  var isBirthdayCorrect = true;
-
-  var isGoodEmail = false;
-
-  if (isEmailCorrect) {
-    if (isEmailRegistered) {
-
-    } else {
-      isGoodEmail = true;     
-    }
-  } else {
-
-  }
-
-  if (isBirthdayCorrect) {
-    if (isGoodEmail) {
-      alert(`
-        Email: ${email}
-        Username: ${username}
-        Password hash: ${password.hashCode()}
-        birthday: ${birthday.toDateString()}
-      `)
-    }
-  } else {
-
-  }
+  alert(`
+    Email: ${email}
+    Username: ${username}
+    Password hash: ${password.hashCode()}
+    birthday: ${birthday.toDateString()}
+  `)
 }
 
 String.prototype.hashCode = function() {
