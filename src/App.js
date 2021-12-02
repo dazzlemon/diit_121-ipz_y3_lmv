@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, ScrollView, Text, StyleSheet, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 const bgImage = process.env.PUBLIC_URL + '/assets/images/bg.jpg';
@@ -57,7 +57,7 @@ const ReactApp = () => {
       source = {bgImage}
       style = {styles.bg}
     >
-      <View style = {styles.box}>
+      <ScrollView style = {styles.box}>
         <View style = {styles.inBox}>
           <Text
             style = {styles.textMain}
@@ -203,7 +203,7 @@ const ReactApp = () => {
             .
           </Text>
         </View>
-      </View>
+      </ScrollView>
     </ImageBackground>
   )
 };
@@ -266,6 +266,7 @@ const styles = StyleSheet.create({
     borderStyle: 'inset',
   },
   box: {
+    flexGrow: 0,
     padding: 25,
     backgroundColor: '#1e2124',
     borderRadius: 7,
