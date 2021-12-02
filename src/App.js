@@ -15,7 +15,7 @@ function CheckInput(props) {
   return (
     <View style = {styles.inBox}>
       <Text style = {styles.textInputTitle}>
-        email
+        {props.title}
         <Text style = {styles.textInputError}>
           {isError ? " - " + errorMessage
                    : null}
@@ -26,6 +26,7 @@ function CheckInput(props) {
         style = {isError ? [styles.input, {borderColor: colors.errorRed, borderWidth: 2}]
                          : styles.input}
         onChangeText = {props.onChangeText}
+        secureTextEntry = {props.secureTextEntry ?? null}
       />
     </View>
   )
@@ -60,45 +61,33 @@ const ReactApp = () => {
         </View>
 
         <CheckInput
+          title = {'email'}
           errorMessage = {() => {
             if (noEmail) {
-              return "this field is required";
+              return 'this field is required';
             }
             if (!isEmailValid) {
-              return "please enter an email address";
+              return 'please enter an email address';
             }
             if (isEmailRegistered) {
-              return "email address already registered";
+              return 'email address already registered';
             }
           }}
           onChangeText = {(text) => setEmail(text)}
         />
 
-        <View style = {styles.inBox}>
-          <Text
-            style = {styles.textInputTitle}
-          >
-            username
-          </Text>
-          <TextInput
-            spellCheck = {false}
-            style = {styles.input}
-            onChangeText = {(text) => setUsername(text)}
-          />
-        </View>
+        <CheckInput
+          title = {'username'}
+          errorMessage = {() => null}
+          onChangeText = {(text) => setUsername(text)}
+        />
 
-        <View style = {styles.inBox}>
-          <Text
-            style = {styles.textInputTitle}
-          >
-            password
-          </Text>
-          <TextInput
-            style = {styles.input}
-            secureTextEntry = {true}
-            onChangeText = {(text) => setPassword(text)}
-          />
-        </View>
+        <CheckInput
+          title = {'password'}
+          errorMessage = {() => null}
+          onChangeText = {(text) => setPassword(text)}
+          secureTextEntry = {true}
+        />
 
         <View style = {styles.inBox}>
           <Text
