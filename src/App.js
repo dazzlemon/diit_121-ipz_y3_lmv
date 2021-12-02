@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { usePropsResolution } from 'native-base';
 
 const bgImage = process.env.PUBLIC_URL + '/assets/images/bg.jpg';
+
+function isEmail(str) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(str.toLowerCase());
+}
 
 function CheckInput(props) {
   var errorMessage = props.errorMessage();
@@ -31,11 +35,15 @@ const ReactApp = () => {
   const [hasAccount, setHasAccount] = useState(false);
   const [isReadingTos, setIsReadingTos] = useState(false);
   const [isReadingPp, setIsReadingPp] = useState(false);
-  const [email, setEmail] = useState()
-  const [username, setUsername] = useState()
-  const [password, setPassword] = useState()
+  const [email, setEmail] = useState();
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
   // jan 1 of current year
-  const [birthday, setBirthday] = useState(new Date(new Date().getFullYear(), 0, 1))
+  const [birthday, setBirthday] = useState(new Date(new Date().getFullYear(), 0, 1));
+
+  const [noEmail, setNoEmail] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [isEmailRegistered, setIsEmailRegistered] = useState(false);
 
   return (
     <ImageBackground
@@ -52,7 +60,19 @@ const ReactApp = () => {
         </View>
 
         <CheckInput
-          errorMessage = {() => "error"}
+          errorMessage = {() => {
+            if (noEmail) {
+              console.log(noEmail);
+              return "this field is required";
+            }
+            if (!isEmailValid) {
+              console.log(isEmailValid);
+              return "please enter an email address";
+            }
+            if (isEmailRegistered) {
+              return "email address already registered";
+            }
+          }}
           onChangeText = {(text) => setEmail(text)}
         />
 
@@ -125,7 +145,15 @@ const ReactApp = () => {
         <View style = {styles.inBox}>
           <TouchableOpacity
             style = {styles.button}
-            onPress = {() => register(email, username, password, birthday)}
+            onPress = {() => {
+              setNoEmail(email == null || email == '');
+              setIsEmailValid(!noEmail && isEmail(email));
+              setIsEmailRegistered(isEmailValid && email == 'registered@email.com');
+
+              if (isEmailValid) {
+                register(email, username, password, birthday);
+              }
+            }}
           >
             <Text style = {styles.buttonText}>
               Continue
@@ -167,24 +195,15 @@ const ReactApp = () => {
 };
 
 function register(email, username, password, birthday) {
-  var nullVal = false
   if (email == null) {
-    alert('you skipped email');
-    nullVal = true;
+    return
   }
   if (username == null) {
-    alert('you skipped username');
-    nullVal = true;
+    return
   }
   if (password == null) {
-    alert('you skipped password');
-    nullVal = true;
+    return
   }
-
-  if (nullVal) {
-    return;
-  }
-
 
   var isEmailCorrect = true;
   var isEmailRegistered = email === 'registered@email.com';
@@ -194,12 +213,12 @@ function register(email, username, password, birthday) {
 
   if (isEmailCorrect) {
     if (isEmailRegistered) {
-      alert('email is already registered');// todo
+
     } else {
       isGoodEmail = true;     
     }
   } else {
-    alert('incorrect email');// todo
+
   }
 
   if (isBirthdayCorrect) {
@@ -212,7 +231,7 @@ function register(email, username, password, birthday) {
       `)
     }
   } else {
-    alert('incorrect birthday');// todo
+
   }
 }
 
