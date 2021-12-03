@@ -174,19 +174,17 @@ const Register = () => {
               Continue
             </Text>
           </TouchableOpacity>
-          <li>
-            <Link 
-              onMouseEnter = {() => setHasAccount(true)}
-              onMouseLeave = {() => setHasAccount(false)}
-              to='/login'
-              underlayColor = 'rgba(0, 0, 0, 0)'
-            >
-              <Text style = {hasAccount ? [styles.clickableText, styles.clickableTextHover]
-                                        : styles.clickableText}>
-                Already have an account?
-              </Text>    
-            </Link>
-          </li>
+          <Link 
+            onMouseEnter = {() => setHasAccount(true)}
+            onMouseLeave = {() => setHasAccount(false)}
+            to='/login'
+            underlayColor = 'rgba(0, 0, 0, 0)'
+          >
+            <Text style = {hasAccount ? [styles.clickableText, styles.clickableTextHover]
+                                      : styles.clickableText}>
+              Already have an account?
+            </Text>    
+          </Link>
 
           <Text style = {styles.tosText}>
             {'By registering, you agree to AppName '}
