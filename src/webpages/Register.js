@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, ScrollView, Text, StyleSheet, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { Link } from 'react-router-native';
 
 const bgImage = process.env.PUBLIC_URL + '/assets/images/bg.jpg';
 
@@ -173,15 +174,19 @@ const Register = () => {
               Continue
             </Text>
           </TouchableOpacity>
-          <Text
-            onMouseEnter = {() => setHasAccount(true)}
-            onMouseLeave = {() => setHasAccount(false)}
-            style = {hasAccount ? [styles.clickableText, styles.clickableTextHover]
-                                : styles.clickableText}
-            onPress = {() => alert('Redirect to login page')}
-          >
-            Already have an account?
-          </Text>
+          <li>
+            <Link 
+              onMouseEnter = {() => setHasAccount(true)}
+              onMouseLeave = {() => setHasAccount(false)}
+              to='/login'
+              underlayColor = 'rgba(0, 0, 0, 0)'
+            >
+              <Text style = {hasAccount ? [styles.clickableText, styles.clickableTextHover]
+                                        : styles.clickableText}>
+                Already have an account?
+              </Text>    
+            </Link>
+          </li>
 
           <Text style = {styles.tosText}>
             {'By registering, you agree to AppName '}
