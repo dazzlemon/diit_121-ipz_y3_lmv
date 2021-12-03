@@ -12,11 +12,7 @@ import Register from './webpages/Register';
 ReactDOM.render(
   (
     <BrowserRouter>
-      <Routes>
-        <Route path = '/' element={<Home/>} />
-        <Route path = '/login' element={<Login/>} />
-        <Route path = '/register' element={<Register/>} />
-      </Routes>
+      <App/>
     </BrowserRouter>
   ),
   document.getElementById('root')

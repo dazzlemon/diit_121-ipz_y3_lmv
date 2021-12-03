@@ -9,9 +9,13 @@ import Register from './webpages/Register';
 import Login from './webpages/Login';
 
 const App = () => {
-    return (
-        <Register/>
-    );
+  return (
+    <Routes>
+      <Route path = '/' element={<Home/>} />
+      <Route path = '/login' element={<Login/>} />
+      <Route path = '/register' element={<Register/>} />
+    </Routes>
+  );
 }
 
 export default App;
