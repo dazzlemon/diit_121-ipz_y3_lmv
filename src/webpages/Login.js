@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { BoxedBg, CheckInput } from '../components';
 import { View } from 'react-native';
@@ -10,6 +10,8 @@ const Login = () => (
 );
 
 const LoginForm = () => {
+    const [needsAccount, setNeedsAccount] = useState(false);
+
     return (
         <>
             <View style = {styles.inBox}>
@@ -47,12 +49,21 @@ const LoginForm = () => {
                         Login
                     </Text>
                 </TouchableOpacity>
-                
+
+            
                 <Text style = {styles.tosText}>
                     {'Need an account? '}
-                    <Text style = {styles.clickableText}>
-                        Register
-                    </Text>
+                    <Link
+                        to = '/register'
+                        underlayColor = 'rgba(0, 0, 0, 0)'
+                        onMouseEnter = {() => setNeedsAccount(true)}
+                        onMouseLeave = {() => setNeedsAccount(false)}
+                    >
+                        <Text style = {needsAccount ? [styles.clickableText, styles.clickableTextHover]
+                                                    : styles.clickableText}>
+                            Register
+                        </Text>
+                    </Link>
                 </Text>
             </View>
         </>
