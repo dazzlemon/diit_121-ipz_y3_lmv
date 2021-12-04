@@ -1,37 +1,15 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Text, StyleSheet, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, ScrollView, Text, ImageBackground, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Link } from 'react-router-native';
+import CheckInput from '../components/CheckInput';
+import { styles } from '../theme';
 
 const bgImage = process.env.PUBLIC_URL + '/assets/images/bg.jpg';
 
 function isEmail(str) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(str.toLowerCase());
-}
-
-function CheckInput(props) {
-  var errorMessage = props.isRequiredError ? 'this field is required'
-                                           : props.errorMessage?.();
-  var isError = errorMessage != null;
-  return (
-    <View style = {styles.inBox}>
-      <Text style = {styles.textInputTitle}>
-        {props.title}
-        <Text style = {styles.textInputError}>
-          {isError ? " - " + errorMessage
-                   : null}
-        </Text>
-      </Text>
-      <TextInput
-        spellCheck = {false}
-        style = {isError ? [styles.input, {borderColor: colors.errorRed, borderWidth: 2}]
-                         : styles.input}
-        onChangeText = {props.onChangeText}
-        secureTextEntry = {props.secureTextEntry ?? null}
-      />
-    </View>
-  )
 }
 
 const Register = () => {
@@ -232,100 +210,5 @@ String.prototype.hashCode = function() {
   }
   return hash;
 }
-
-const colors = {
-  borderColor: '#141414',
-  itemBg: '#1e1e1e',
-  white: '#ffffff',
-  itemFontColor: '#707070',
-  errorRed: '#ff1f1f',
-};
-
-const sizes = {
-  height: 40,
-  borderRadius: 5,
-  borderWidth: 1,
-}
-
-const styles = StyleSheet.create({
-  input: {
-    borderWidth: sizes.borderWidth,
-    borderColor: colors.borderColor,
-    borderRadius: sizes.borderRadius,
-    height: sizes.height,
-    backgroundColor: colors.itemBg,
-    color: colors.itemFontColor,
-    fontSize: 18,
-    borderStyle: 'inset',
-  },
-  picker: {
-    backgroundColor: colors.itemBg,
-    borderColor: colors.borderColor,
-    borderWidth: sizes.borderWidth,
-    height: sizes.height,
-    color: colors.itemFontColor,
-    fontWeight: 'bold',
-    borderRadius: sizes.borderRadius,
-    borderStyle: 'inset',
-  },
-  box: {
-    flexGrow: 0,
-    padding: 25,
-    backgroundColor: '#1e2124',
-    borderRadius: 7,
-  },
-  textMain: {
-    color: colors.white,
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  textInputTitle: {
-    textTransform: 'uppercase',
-    fontSize: 14,
-    color: colors.itemFontColor,
-    marginBottom: 5,
-    fontWeight: 'bold',
-  },
-  bg: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    height: '100%',
-    width: '100%',
-    resizeMode: 'stretch',
-    position: 'absolute',
-    inset: '0 0 0 0',// fullscreen
-  },
-  clickableText: {
-    color: '#30b2fd',
-  },
-  tosText: {
-    color: '#404040',
-    fontSize: 12,
-    marginTop: 15,
-  },
-  inBox: {
-    padding: 7,
-  },
-  button: {
-    borderRadius: sizes.borderRadius,
-    backgroundColor: '#6665d2',
-    height: sizes.height,
-  },
-  buttonText: {
-    color: colors.white,
-    textAlign: 'center',
-    padding: 10,
-    fontWeight: 'bold',
-  },
-  clickableTextHover: {
-    textDecorationLine: 'underline',
-    cursor: 'pointer',
-  },
-  textInputError: {
-    color : colors.errorRed,
-  }
-});
 
 export default Register;
