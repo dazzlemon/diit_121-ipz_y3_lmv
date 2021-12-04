@@ -2,26 +2,13 @@ import React, { useState } from 'react';
 import { View, ScrollView, Text, ImageBackground, TouchableOpacity, Image } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Link } from 'react-router-native';
-import { CheckInput } from '../components';
+import { CheckInput, BoxedBg } from '../components';
 import { styles } from '../theme';
-
-const bgImage = process.env.PUBLIC_URL + '/assets/images/bg.jpg';
 
 function isEmail(str) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(str.toLowerCase());
 }
-
-const BoxedBg = (props) => (
-  <ImageBackground
-    source = {bgImage}
-    style = {styles.bg}
-  >
-    <ScrollView style = {styles.box}>
-      {props.content}
-    </ScrollView>
-  </ImageBackground>
-);
 
 const Register = () => (
   <BoxedBg content = {<RegisterForm/>}/>
