@@ -32,7 +32,7 @@ const LoginForm = () => {
                 secureTextEntry = {true}
             />
 
-            <View style = {[styles.inBox, {marginTop: -15}]}>
+            <View style = {[styles.inBox, {marginTop: -14}]}>
                 <Text style = {false ? [styles.clickableText, styles.clickableTextHover]
                                      : styles.clickableText}>
                     Forgot your password?
