@@ -12,18 +12,22 @@ function isEmail(str) {
   return re.test(str.toLowerCase());
 }
 
-const BoxedBg = (props) => {
-  return (<ImageBackground
+const BoxedBg = (props) => (
+  <ImageBackground
     source = {bgImage}
     style = {styles.bg}
   >
     <ScrollView style = {styles.box}>
       {props.content}
     </ScrollView>
-  </ImageBackground>);
-};
+  </ImageBackground>
+);
 
-const Register = () => {
+const Register = () => (
+  <BoxedBg content = {<RegisterForm/>}/>
+);
+
+const RegisterForm = () => {
   const [hasAccount, setHasAccount] = useState(false);
   const [isReadingTos, setIsReadingTos] = useState(false);
   const [isReadingPp, setIsReadingPp] = useState(false);
@@ -43,7 +47,7 @@ const Register = () => {
   const [noPassword, setNoPassword] = useState(false);
 
   return (
-    <BoxedBg content = {(<>
+    <>
       <View style = {styles.inBox}>
         <Text
           style = {styles.textMain}
@@ -185,7 +189,7 @@ const Register = () => {
           .
         </Text>
       </View>
-    </>)}/>
+    </>
   )
 };
 
