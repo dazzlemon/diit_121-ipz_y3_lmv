@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import Home from './webpages/Home';
 import Login from './webpages/Login';
@@ -11,9 +11,9 @@ import Register from './webpages/Register';
 
 ReactDOM.render(
   (
-    <BrowserRouter>
+    <HashRouter>
       <App/>
-    </BrowserRouter>
+    </HashRouter>
   ),
   document.getElementById('root')
 );
