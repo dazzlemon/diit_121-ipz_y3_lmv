@@ -5,10 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
-import Home from './webpages/Home';
-import Login from './webpages/Login';
-import Register from './webpages/Register';
-
 ReactDOM.render(
   (
     <HashRouter>

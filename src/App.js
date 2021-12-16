@@ -7,6 +7,7 @@ import {
 import Home from './webpages/Home';
 import Register from './webpages/Register';
 import Login from './webpages/Login';
+import Chat from './webpages/Chat'
 
 const App = () => {
   return (
@@ -18,10 +19,13 @@ const App = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/Login">Login</Link>
+              <Link to="/login">Login</Link>
             </li>
             <li>
-              <Link to="/Register">Register</Link>
+              <Link to="/register">Register</Link>
+            </li>
+            <li>
+              <Link to="/chat">Chat</Link>
             </li>
           </ul>
         </nav>
@@ -30,6 +34,7 @@ const App = () => {
         <Route path = '/'         element={<Home    />} />
         <Route path = '/login'    element={<Login   />} />
         <Route path = '/register' element={<Register/>} />
+        <Route path = '/chat'     element={<Chat    />} />
       </Routes>
     </>
   );
