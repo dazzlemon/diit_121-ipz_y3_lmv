@@ -14,6 +14,7 @@ import {
   Alert,
 } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { MessageBox } from 'react-chat-elements';
 
 export default function Chat() {
   const [chatUser] = useState({
@@ -105,8 +106,7 @@ export default function Chat() {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={styles.container}>
+    <View style={styles.container}>
         <FlatList
           style={{ backgroundColor: '#f2f2ff' }}
           inverted={true}
@@ -159,6 +159,7 @@ export default function Chat() {
             <TextInput
               defaultValue={inputMessage}
               style={styles.messageInput}
+              value={inputMessage}
               placeholder='Message'
               onChangeText={(text) => setInputMessage(text)}
               onSubmitEditing={() => {
@@ -175,8 +176,7 @@ export default function Chat() {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
-    </TouchableWithoutFeedback>
+    </View>
   );
 }
 
