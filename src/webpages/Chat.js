@@ -14,6 +14,8 @@ import {
   Alert,
 } from 'react-native';
 import { IoSend } from 'react-icons/io5';
+import { IoMdMic } from 'react-icons/io';
+import { AiOutlineSmile, AiOutlinePaperClip } from 'react-icons/ai';
 
 export default function Chat() {
   const [chatUser] = useState({
@@ -25,6 +27,8 @@ export default function Chat() {
   const [currentUser] = useState({
     name: 'John Doe',
   });
+
+  const [isInput, setIsInput] = useState(false);
 
   const [messages, setMessages] = useState([
     { sender: 'John Doe', message: 'Hey there!', time: '6:01 PM' },
@@ -155,15 +159,34 @@ export default function Chat() {
 
         <View style={{ paddingVertical: 10 }}>
           <View style={styles.messageInputView}>
+            <TouchableOpacity
+              style={styles.messageSendView}
+            >
+              <AiOutlineSmile/>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.messageSendView}
+            >
+              <AiOutlinePaperClip/>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.messageSendView}
+            >
+              <IoMdMic/>
+            </TouchableOpacity>
             <TextInput
               defaultValue={inputMessage}
-              style={styles.messageInput}
+              inputContainerStyle={styles.messageInput}
+              style={isInput ? [styles.messageInput, {outline: 'none'}]
+                             : styles.messageInput}
               value={inputMessage}
               placeholder='Message'
               onChangeText={(text) => setInputMessage(text)}
               onSubmitEditing={() => {
                 sendMessage();
               }}
+              onFocus={() => setIsInput(true)}
+              onBlur={() => setIsInput(false)}
             />
             <TouchableOpacity
               style={styles.messageSendView}
