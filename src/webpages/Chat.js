@@ -18,102 +18,16 @@ import { IoMdMic } from 'react-icons/io';
 import { AiOutlineSmile, AiOutlinePaperClip } from 'react-icons/ai';
 import { colors, sizes } from '../theme';
 
-const Chat = () => {
-
-};
-
-const ChatPage = () => {
-  const [currentUser] = useState({
-    name: 'John Doe',
-  });
-
+const Chat = (props) => {
   const [isInput, setIsInput] = useState(false);
-
-  const [messages, setMessages] = useState([
-    { sender: 'John Doe', message: 'Hey there!', time: '6:01 PM' },
-    {
-      sender: 'Robert Henry',
-      message: 'Hello, how are you doing?',
-      time: '6:02 PM',
-    },
-    {
-      sender: 'John Doe',
-      message: 'I am good, how about you?',
-      time: '6:02 PM',
-    },
-    {
-      sender: 'John Doe',
-      message: `😊😇`,
-      time: '6:02 PM',
-    },
-    {
-      sender: 'Robert Henry',
-      message: `Can't wait to meet you.`,
-      time: '6:03 PM',
-    },
-    {
-      sender: 'John Doe',
-      message: `That's great, when are you coming?`,
-      time: '6:03 PM',
-    },
-    {
-      sender: 'Robert Henry',
-      message: `This weekend.`,
-      time: '6:03 PM',
-    },
-    {
-      sender: 'Robert Henry',
-      message: `Around 4 to 6 PM.`,
-      time: '6:04 PM',
-    },
-    {
-      sender: 'John Doe',
-      message: `Great, don't forget to bring me some mangoes.`,
-      time: '6:05 PM',
-    },
-    {
-      sender: 'Robert Henry',
-      message: `Sure!`,
-      time: '6:05 PM',
-    },
-  ]);
-
   const [inputMessage, setInputMessage] = useState('');
   const [linesCount, setLinesCount] = useState(1);
-
-  function getTime(date) {
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    var strTime = hours + ':' + minutes + ' ' + ampm;
-    return strTime;
-  }
-
-  function sendMessage() {
-    if (inputMessage === '') {
-      return setInputMessage('');
-    }
-    let t = getTime(new Date());
-    setMessages([
-      ...messages,
-      {
-        sender: currentUser.name,
-        message: inputMessage,
-        time: t,
-      },
-    ]);
-    setInputMessage('');
-    setLinesCount(1);
-  }
 
   return (
     <View style={styles.container}>
       <FlatList
         style={{ backgroundColor: '#1e2124' }}
-        data={messages}
+        data={props.messages}
         renderItem={({ item }) => (
           <TouchableWithoutFeedback>
             <View style={{ marginTop: 6 }}>
@@ -122,16 +36,16 @@ const ChatPage = () => {
                   maxWidth: Dimensions.get('screen').width * 0.8,
                   backgroundColor: '#6665d2',
                   alignSelf:
-                    item.sender === currentUser.name
+                    item.sender === props.currentUser.name
                       ? 'flex-end'
                       : 'flex-start',
                   marginHorizontal: 10,
                   padding: 10,
                   borderRadius: 8,
                   borderBottomLeftRadius:
-                    item.sender === currentUser.name ? 8 : 0,
+                    item.sender === props.currentUser.name ? 8 : 0,
                   borderBottomRightRadius:
-                    item.sender === currentUser.name ? 0 : 8,
+                    item.sender === props.currentUser.name ? 0 : 8,
                 }}
               >
                 <Text
@@ -186,7 +100,9 @@ const ChatPage = () => {
               setLinesCount(Math.min(inputMessage.split(/\r\n|\r|\n/).length, 10));
             }}
             onSubmitEditing={() => {
-              sendMessage();
+              props.sendMessage(inputMessage);
+              setInputMessage('');
+              setLinesCount(1);
             }}
             onFocus={() => setIsInput(true)}
             onBlur={() => setIsInput(false)}
@@ -198,7 +114,9 @@ const ChatPage = () => {
           <TouchableOpacity
             style={styles.messageSendView}
             onPress={() => {
-              sendMessage();
+              props.sendMessage(inputMessage);
+              setInputMessage('');
+              setLinesCount(1);
             }}
           >
             <IoSend size='25'/>
@@ -207,6 +125,94 @@ const ChatPage = () => {
       </View>
     </View>
   );
+};
+
+const ChatPage = (props) => {
+  const [currentUser] = useState({
+    name: 'John Doe',
+  });
+
+  const [messages, setMessages] = useState([
+    { sender: 'John Doe', message: 'Hey there!', time: '6:01 PM' },
+    {
+      sender: 'Robert Henry',
+      message: 'Hello, how are you doing?',
+      time: '6:02 PM',
+    },
+    {
+      sender: 'John Doe',
+      message: 'I am good, how about you?',
+      time: '6:02 PM',
+    },
+    {
+      sender: 'John Doe',
+      message: `😊😇`,
+      time: '6:02 PM',
+    },
+    {
+      sender: 'Robert Henry',
+      message: `Can't wait to meet you.`,
+      time: '6:03 PM',
+    },
+    {
+      sender: 'John Doe',
+      message: `That's great, when are you coming?`,
+      time: '6:03 PM',
+    },
+    {
+      sender: 'Robert Henry',
+      message: `This weekend.`,
+      time: '6:03 PM',
+    },
+    {
+      sender: 'Robert Henry',
+      message: `Around 4 to 6 PM.`,
+      time: '6:04 PM',
+    },
+    {
+      sender: 'John Doe',
+      message: `Great, don't forget to bring me some mangoes.`,
+      time: '6:05 PM',
+    },
+    {
+      sender: 'Robert Henry',
+      message: `Sure!`,
+      time: '6:05 PM',
+    },
+  ]);
+
+  function getTime(date) {
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return strTime;
+  }
+
+  function sendMessage(inputMessage) {
+    if (inputMessage === '') {
+      return;
+    }
+    let t = getTime(new Date());
+    setMessages([
+      ...messages,
+      {
+        sender: currentUser.name,
+        message: inputMessage,
+        time: t,
+      },
+    ]);
+  }
+
+  return (<Chat
+    sendMessage={sendMessage}
+    messages={messages}
+    setMessages={setMessages}
+    currentUser={currentUser}
+  />);
 }
 
 const styles = StyleSheet.create({
