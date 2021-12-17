@@ -79,6 +79,7 @@ const ChatPage = () => {
   ]);
 
   const [inputMessage, setInputMessage] = useState('');
+  const [linesCount, setLinesCount] = useState(1);
 
   function getTime(date) {
     var hours = date.getHours();
@@ -105,6 +106,7 @@ const ChatPage = () => {
       },
     ]);
     setInputMessage('');
+    setLinesCount(1);
   }
 
   return (
@@ -175,11 +177,14 @@ const ChatPage = () => {
           <TextInput
             defaultValue={inputMessage}
             inputContainerStyle={styles.messageInput}
-            style={isInput ? [styles.messageInput, {outline: 'none', height: 20 + 20 * Math.min(inputMessage.split(/\r\n|\r|\n/).length, 10)}]
-                            : [styles.messageInput, {height: 20 + 20 * Math.min(inputMessage.split(/\r\n|\r|\n/).length, 10)}]}
+            style={isInput ? [styles.messageInput, {outline: 'none', height: 20 + 20 * linesCount}]
+                           : [styles.messageInput, {height: 20 + 20 * linesCount}]}
             value={inputMessage}
             placeholder='Message'
-            onChangeText={(text) => setInputMessage(text)}
+            onChangeText={(text) => {
+              setInputMessage(text);
+              setLinesCount(Math.min(inputMessage.split(/\r\n|\r|\n/).length, 10));
+            }}
             onSubmitEditing={() => {
               sendMessage();
             }}
