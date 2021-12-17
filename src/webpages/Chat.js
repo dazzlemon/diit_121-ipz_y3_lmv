@@ -240,7 +240,8 @@ const styles = StyleSheet.create({
   },
   messageSendView: {
     paddingHorizontal: 10,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
+    paddingVertical: 5,
     backgroundColor: colors.itemBg,
     color: colors.itemFontColor,
   },
