@@ -18,13 +18,11 @@ import { IoMdMic } from 'react-icons/io';
 import { AiOutlineSmile, AiOutlinePaperClip } from 'react-icons/ai';
 import { colors, sizes } from '../theme';
 
-export default function Chat() {
-  const [chatUser] = useState({
-    name: 'Robert Henry',
-    profile_image: 'https://randomuser.me/api/portraits/men/0.jpg',
-    last_seen: 'online',
-  });
+const Chat = () => {
 
+};
+
+const ChatPage = () => {
   const [currentUser] = useState({
     name: 'John Doe',
   });
@@ -109,101 +107,99 @@ export default function Chat() {
     setInputMessage('');
   }
 
-  const [height, setHeight] = useState(40);
-
   return (
     <View style={styles.container}>
-        <FlatList
-          style={{ backgroundColor: '#1e2124' }}
-          data={messages}
-          renderItem={({ item }) => (
-            <TouchableWithoutFeedback>
-              <View style={{ marginTop: 6 }}>
-                <View
+      <FlatList
+        style={{ backgroundColor: '#1e2124' }}
+        data={messages}
+        renderItem={({ item }) => (
+          <TouchableWithoutFeedback>
+            <View style={{ marginTop: 6 }}>
+              <View
+                style={{
+                  maxWidth: Dimensions.get('screen').width * 0.8,
+                  backgroundColor: '#6665d2',
+                  alignSelf:
+                    item.sender === currentUser.name
+                      ? 'flex-end'
+                      : 'flex-start',
+                  marginHorizontal: 10,
+                  padding: 10,
+                  borderRadius: 8,
+                  borderBottomLeftRadius:
+                    item.sender === currentUser.name ? 8 : 0,
+                  borderBottomRightRadius:
+                    item.sender === currentUser.name ? 0 : 8,
+                }}
+              >
+                <Text
                   style={{
-                    maxWidth: Dimensions.get('screen').width * 0.8,
-                    backgroundColor: '#6665d2',
-                    alignSelf:
-                      item.sender === currentUser.name
-                        ? 'flex-end'
-                        : 'flex-start',
-                    marginHorizontal: 10,
-                    padding: 10,
-                    borderRadius: 8,
-                    borderBottomLeftRadius:
-                      item.sender === currentUser.name ? 8 : 0,
-                    borderBottomRightRadius:
-                      item.sender === currentUser.name ? 0 : 8,
+                    color: '#fff',
+                    fontSize: 16,
                   }}
                 >
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 16,
-                    }}
-                  >
-                    {item.message}
-                  </Text>
-                  <Text
-                    style={{
-                      color: '#dfe4ea',
-                      fontSize: 14,
-                      alignSelf: 'flex-end',
-                    }}
-                  >
-                    {item.time}
-                  </Text>
-                </View>
+                  {item.message}
+                </Text>
+                <Text
+                  style={{
+                    color: '#dfe4ea',
+                    fontSize: 14,
+                    alignSelf: 'flex-end',
+                  }}
+                >
+                  {item.time}
+                </Text>
               </View>
-            </TouchableWithoutFeedback>
-          )}
-        />
+            </View>
+          </TouchableWithoutFeedback>
+        )}
+      />
 
-        <View style={{ paddingVertical: 10 }}>
-          <View style={styles.messageInputView}>
-            <TouchableOpacity
-              style={styles.messageSendView}
-            >
-              <AiOutlineSmile size='25'/>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.messageSendView}
-            >
-              <AiOutlinePaperClip size='25'/>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.messageSendView}
-            >
-              <IoMdMic size='25'/>
-            </TouchableOpacity>
-            <TextInput
-              defaultValue={inputMessage}
-              inputContainerStyle={styles.messageInput}
-              style={isInput ? [styles.messageInput, {outline: 'none', height: 20 + 20 * Math.min(inputMessage.split(/\r\n|\r|\n/).length, 10)}]
-                             : [styles.messageInput, {height: 20 + 20 * Math.min(inputMessage.split(/\r\n|\r|\n/).length, 10)}]}
-              value={inputMessage}
-              placeholder='Message'
-              onChangeText={(text) => setInputMessage(text)}
-              onSubmitEditing={() => {
-                sendMessage();
-              }}
-              onFocus={() => setIsInput(true)}
-              onBlur={() => setIsInput(false)}
-              autoFocus={true}
-              blurOnSubmit={false}
-              spellCheck={false}
-              multiline={true}
-            />
-            <TouchableOpacity
-              style={styles.messageSendView}
-              onPress={() => {
-                sendMessage();
-              }}
-            >
-              <IoSend size='25'/>
-            </TouchableOpacity>
-          </View>
+      <View style={{ paddingVertical: 10 }}>
+        <View style={styles.messageInputView}>
+          <TouchableOpacity
+            style={styles.messageSendView}
+          >
+            <AiOutlineSmile size='25'/>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.messageSendView}
+          >
+            <AiOutlinePaperClip size='25'/>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.messageSendView}
+          >
+            <IoMdMic size='25'/>
+          </TouchableOpacity>
+          <TextInput
+            defaultValue={inputMessage}
+            inputContainerStyle={styles.messageInput}
+            style={isInput ? [styles.messageInput, {outline: 'none', height: 20 + 20 * Math.min(inputMessage.split(/\r\n|\r|\n/).length, 10)}]
+                            : [styles.messageInput, {height: 20 + 20 * Math.min(inputMessage.split(/\r\n|\r|\n/).length, 10)}]}
+            value={inputMessage}
+            placeholder='Message'
+            onChangeText={(text) => setInputMessage(text)}
+            onSubmitEditing={() => {
+              sendMessage();
+            }}
+            onFocus={() => setIsInput(true)}
+            onBlur={() => setIsInput(false)}
+            autoFocus={true}
+            blurOnSubmit={false}
+            spellCheck={false}
+            multiline={true}
+          />
+          <TouchableOpacity
+            style={styles.messageSendView}
+            onPress={() => {
+              sendMessage();
+            }}
+          >
+            <IoSend size='25'/>
+          </TouchableOpacity>
         </View>
+      </View>
     </View>
   );
 }
@@ -246,3 +242,5 @@ const styles = StyleSheet.create({
     color: colors.itemFontColor,
   },
 });
+
+export default ChatPage;
