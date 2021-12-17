@@ -109,12 +109,13 @@ export default function Chat() {
     setInputMessage('');
   }
 
+  const [height, setHeight] = useState(40);
+
   return (
     <View style={styles.container}>
         <FlatList
           style={{ backgroundColor: '#1e2124' }}
-          inverted={true}
-          data={JSON.parse(JSON.stringify(messages)).reverse()}
+          data={messages}
           renderItem={({ item }) => (
             <TouchableWithoutFeedback>
               <View style={{ marginTop: 6 }}>
@@ -163,23 +164,23 @@ export default function Chat() {
             <TouchableOpacity
               style={styles.messageSendView}
             >
-              <AiOutlineSmile/>
+              <AiOutlineSmile size='25'/>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.messageSendView}
             >
-              <AiOutlinePaperClip/>
+              <AiOutlinePaperClip size='25'/>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.messageSendView}
             >
-              <IoMdMic/>
+              <IoMdMic size='25'/>
             </TouchableOpacity>
             <TextInput
               defaultValue={inputMessage}
               inputContainerStyle={styles.messageInput}
-              style={isInput ? [styles.messageInput, {outline: 'none'}]
-                             : styles.messageInput}
+              style={isInput ? [styles.messageInput, {outline: 'none', height: 20 + 20 * Math.min(inputMessage.split(/\r\n|\r|\n/).length, 10)}]
+                             : [styles.messageInput, {height: 20 + 20 * Math.min(inputMessage.split(/\r\n|\r|\n/).length, 10)}]}
               value={inputMessage}
               placeholder='Message'
               onChangeText={(text) => setInputMessage(text)}
@@ -188,6 +189,10 @@ export default function Chat() {
               }}
               onFocus={() => setIsInput(true)}
               onBlur={() => setIsInput(false)}
+              autoFocus={true}
+              blurOnSubmit={false}
+              spellCheck={false}
+              multiline={true}
             />
             <TouchableOpacity
               style={styles.messageSendView}
@@ -195,7 +200,7 @@ export default function Chat() {
                 sendMessage();
               }}
             >
-              <IoSend/>
+              <IoSend size='25'/>
             </TouchableOpacity>
           </View>
         </View>
@@ -215,6 +220,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#1e2124',
+    position: 'absolute',
+    inset: '0 0 0 0',// fullscreen
   },
   messageInputView: {
     display: 'flex',
@@ -223,11 +230,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   messageInput: {
-    height: 40,
+    paddingTop: 10,
     flex: 1,
     paddingHorizontal: 10,
     backgroundColor: colors.itemBg,
     color: colors.itemFontColor,
+    borderWidth: 0,
+    borderColor: "transparent"
   },
   messageSendView: {
     paddingHorizontal: 10,
