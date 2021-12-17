@@ -13,8 +13,7 @@ import {
   Dimensions,
   Alert,
 } from 'react-native';
-import { Icon } from 'react-native-elements';
-import { MessageBox } from 'react-chat-elements';
+import { IoSend } from 'react-icons/io5';
 
 export default function Chat() {
   const [chatUser] = useState({
@@ -172,7 +171,7 @@ export default function Chat() {
                 sendMessage();
               }}
             >
-              <Icon name='send' type='material' />
+              <IoSend/>
             </TouchableOpacity>
           </View>
         </View>
