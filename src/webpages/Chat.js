@@ -16,6 +16,7 @@ import {
 import { IoSend } from 'react-icons/io5';
 import { IoMdMic } from 'react-icons/io';
 import { AiOutlineSmile, AiOutlinePaperClip } from 'react-icons/ai';
+import { colors, sizes } from '../theme';
 
 export default function Chat() {
   const [chatUser] = useState({
@@ -111,7 +112,7 @@ export default function Chat() {
   return (
     <View style={styles.container}>
         <FlatList
-          style={{ backgroundColor: '#f2f2ff' }}
+          style={{ backgroundColor: '#1e2124' }}
           inverted={true}
           data={JSON.parse(JSON.stringify(messages)).reverse()}
           renderItem={({ item }) => (
@@ -120,7 +121,7 @@ export default function Chat() {
                 <View
                   style={{
                     maxWidth: Dimensions.get('screen').width * 0.8,
-                    backgroundColor: '#3a6ee8',
+                    backgroundColor: '#6665d2',
                     alignSelf:
                       item.sender === currentUser.name
                         ? 'flex-end'
@@ -213,22 +214,25 @@ const styles = StyleSheet.create({
   userProfileImage: { height: '100%', aspectRatio: 1, borderRadius: 100 },
   container: {
     flex: 1,
-    backgroundColor: '#f2f2ff',
+    backgroundColor: '#1e2124',
   },
   messageInputView: {
     display: 'flex',
     flexDirection: 'row',
     marginHorizontal: 14,
     backgroundColor: '#fff',
-    borderRadius: 4,
   },
   messageInput: {
     height: 40,
     flex: 1,
     paddingHorizontal: 10,
+    backgroundColor: colors.itemBg,
+    color: colors.itemFontColor,
   },
   messageSendView: {
     paddingHorizontal: 10,
     justifyContent: 'center',
+    backgroundColor: colors.itemBg,
+    color: colors.itemFontColor,
   },
 });
