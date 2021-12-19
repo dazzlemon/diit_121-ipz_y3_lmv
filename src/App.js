@@ -8,6 +8,7 @@ import Home from './webpages/Home';
 import Register from './webpages/Register';
 import Login from './webpages/Login';
 import Chat from './webpages/Chat'
+import Settings from './webpages/Settings';
 
 const App = () => {
   return (
@@ -27,6 +28,9 @@ const App = () => {
             <li>
               <Link to="/chat">Chat</Link>
             </li>
+            <li>
+              <Link to="/settings">Settings</Link>
+            </li>
           </ul>
         </nav>
       </div>
@@ -35,6 +39,7 @@ const App = () => {
         <Route path = '/login'    element={<Login   />} />
         <Route path = '/register' element={<Register/>} />
         <Route path = '/chat'     element={<Chat    />} />
+        <Route path = '/settings' element={<Settings/>} />
       </Routes>
     </>
   );
