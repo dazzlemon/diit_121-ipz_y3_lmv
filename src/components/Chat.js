@@ -115,10 +115,6 @@ const InputToolbar = (props) => {
   )
 }
 
-const MessageBubble = (props) => {
-
-};
-
 const Chat = (props) => {
   return (
     <View style={styles.container}>
@@ -143,8 +139,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#1e2124',
-    position: 'absolute',
-    inset: '0 0 0 0',// fullscreen
   },
   messageInputView: {
     display: 'flex',

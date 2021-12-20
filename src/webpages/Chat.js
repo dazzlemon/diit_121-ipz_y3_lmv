@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Chat } from '../components';
+import { Chat, ChatList } from '../components';
 import { GiftedChat } from 'react-native-gifted-chat';
+import { View } from 'react-native';
 
 const ChatPage = () => {
   const u2 = {
@@ -48,14 +49,41 @@ const ChatPage = () => {
     setMessages(GiftedChat.append(messages, messages_));
   }
 
+  const chats = [
+    { _id: 1,
+      name: 'Chat1', 
+      avatar: 'https://steamuserimages-a.akamaihd.net/ugc/759346451812931511/D878648B294DA2B94D18893BF363C9084BA1D8F1/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false',
+      lastMessage: messages[0],
+    },
+    { _id: 2,
+      name: 'Chat2',
+      avatar: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.redd.it%2Fqqa16cl4wbd21.png&f=1&nofb=1',
+    },
+    { _id: 3,
+      name: 'Chat3',
+      avatar: 'https://st2.depositphotos.com/1009634/7235/v/950/depositphotos_72350117-stock-illustration-no-user-profile-picture-hand.jpg',
+    },
+    { _id: 4,
+      name: 'Chat4',
+      avatar: 'https://www.neurosciencemarketing.com/wp-content/uploads/2016/08/mona-lisa.jpg',
+    },
+    
+  ];
+
   return (
-  <>
+  <View style={{
+    position: 'absolute',
+    inset: '0 0 0 0',// fullscreen
+    display: 'flex',
+    flexDirection: 'row',
+  }}>
+    <ChatList chats={chats}/>
     <Chat
       sendMessage={sendMessage}
       messages={messages}
-      currentUser={{_id: 1,}}
+      currentUser={u1}
     />
-  </>
+  </View>
   );
 }
 
