@@ -14,72 +14,77 @@ import { IoMdMic } from 'react-icons/io';
 import { AiOutlineSmile, AiOutlinePaperClip } from 'react-icons/ai';
 import { colors } from '../theme';
 import { GiftedChat } from 'react-native-gifted-chat';
+import { Row } from 'react-bootstrap';
 
 const InputToolbar = (props) => {
   const [isInput, setIsInput] = useState(false);
   const [inputMessage, setInputMessage] = useState('');
   const [linesCount, setLinesCount] = useState(1);
 
+  const sendMessage = () => {
+    if (inputMessage != '') {
+      props.sendMessage([{_id: 1,
+        text: inputMessage,
+        createdAt: new Date(),
+        user: props.currentUser,
+      }]);
+      setInputMessage('');
+      setLinesCount(1);
+    }
+  }
+
+  const textInputStyle = () => {
+    return isInput ? [styles.messageInput, {outline: 'none', height: 20 + 20 * linesCount},]
+                   : [styles.messageInput, {height: 20 + 20 * linesCount}]
+  }
+
   return (
-    <View>
-      <View style={styles.messageInputView}>
-        <TouchableOpacity
-          style={styles.messageSendView}
-        >
-          <AiOutlineSmile size='25'/>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.messageSendView}
-        >
-          <AiOutlinePaperClip size='25'/>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.messageSendView}
-        >
-          <IoMdMic size='25'/>
-        </TouchableOpacity>
-        <TextInput
-          defaultValue={inputMessage}
-          inputContainerStyle={styles.messageInput}
-          style={isInput ? [styles.messageInput, {outline: 'none', height: 20 + 20 * linesCount}]
-                         : [styles.messageInput, {height: 20 + 20 * linesCount}]}
-          value={inputMessage}
-          placeholder='Message'
-          onChangeText={(text) => {
-            setInputMessage(text);
-            setLinesCount(Math.min(inputMessage.split(/\r\n|\r|\n/).length, 10));
-          }}
-          onSubmitEditing={() => {
-            props.sendMessage([{_id: 1,
-              text: inputMessage,
-              createdAt: new Date(),
-              user: props.currentUser,
-            }]);
-            setInputMessage('');
-            setLinesCount(1);
-          }}
-          onFocus={() => setIsInput(true)}
-          onBlur={() => setIsInput(false)}
-          autoFocus={true}
-          blurOnSubmit={false}
-          spellCheck={false}
-          multiline={true}
-        />
-        <TouchableOpacity
-          style={styles.messageSendView}
-          onPress={() => {
-            props.sendMessage([{_id: 1,
-              text: inputMessage,
-              createdAt: new Date(),
-              user: props.currentUser,
-            }]);
-            setInputMessage('');
-            setLinesCount(1);
-          }}
-        >
-          <IoSend size='25'/>
-        </TouchableOpacity>
-      </View>
+    <View style={styles.messageInputView}>
+      <TouchableOpacity
+        style={styles.messageSendView}
+      >
+        <AiOutlineSmile size='25'/>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.messageSendView}
+      >
+        <AiOutlinePaperClip size='25'/>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.messageSendView}
+      >
+        <IoMdMic size='25'/>
+      </TouchableOpacity>
+      <TextInput
+        defaultValue={inputMessage}
+        inputContainerStyle={styles.messageInput}
+        style={textInputStyle()}
+        value={inputMessage}
+        placeholder='Message'
+        onChangeText={(text) => {
+          setInputMessage(text);
+          setLinesCount(Math.max(
+            1, 
+            Math.min(
+              inputMessage.split(/\r\n|\r|\n/).length - 1,
+              10
+            )
+          ));
+        }}
+        onSubmitEditing={sendMessage}
+        onFocus={() => setIsInput(true)}
+        onBlur={() => setIsInput(false)}
+        autoFocus={true}
+        blurOnSubmit={false}
+        spellCheck={false}
+        multiline={true}
+      />
+      <TouchableOpacity
+        style={styles.messageSendView}
+        onPress={sendMessage}
+      >
+        <IoSend size='25'/>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -147,14 +152,6 @@ const Chat = (props) => {
 };
 
 const styles = StyleSheet.create({
-  headerLeft: {
-    paddingVertical: 4,
-    paddingHorizontal: 10,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  userProfileImage: { height: '100%', aspectRatio: 1, borderRadius: 100 },
   container: {
     flex: 1,
     backgroundColor: '#1e2124',
@@ -164,8 +161,8 @@ const styles = StyleSheet.create({
   messageInputView: {
     display: 'flex',
     flexDirection: 'row',
-    marginHorizontal: 14,
-    backgroundColor: '#fff',
+    // marginHorizontal: 14,
+    // backgroundColor: '#fff',
   },
   messageInput: {
     paddingTop: 10,
@@ -174,7 +171,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.itemBg,
     color: colors.itemFontColor,
     borderWidth: 0,
-    borderColor: "transparent"
+    borderColor: "transparent",
   },
   messageSendView: {
     paddingHorizontal: 10,
