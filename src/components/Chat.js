@@ -13,15 +13,81 @@ import { IoSend } from 'react-icons/io5';
 import { IoMdMic } from 'react-icons/io';
 import { AiOutlineSmile, AiOutlinePaperClip } from 'react-icons/ai';
 import { colors } from '../theme';
+import { GiftedChat } from 'react-native-gifted-chat';
 
-const Chat = (props) => {
+const InputToolbar = (props) => {
   const [isInput, setIsInput] = useState(false);
   const [inputMessage, setInputMessage] = useState('');
   const [linesCount, setLinesCount] = useState(1);
 
   return (
+    <View>
+      <View style={styles.messageInputView}>
+        <TouchableOpacity
+          style={styles.messageSendView}
+        >
+          <AiOutlineSmile size='25'/>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.messageSendView}
+        >
+          <AiOutlinePaperClip size='25'/>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.messageSendView}
+        >
+          <IoMdMic size='25'/>
+        </TouchableOpacity>
+        <TextInput
+          defaultValue={inputMessage}
+          inputContainerStyle={styles.messageInput}
+          style={isInput ? [styles.messageInput, {outline: 'none', height: 20 + 20 * linesCount}]
+                         : [styles.messageInput, {height: 20 + 20 * linesCount}]}
+          value={inputMessage}
+          placeholder='Message'
+          onChangeText={(text) => {
+            setInputMessage(text);
+            setLinesCount(Math.min(inputMessage.split(/\r\n|\r|\n/).length, 10));
+          }}
+          onSubmitEditing={() => {
+            props.sendMessage([{_id: 1,
+              text: inputMessage,
+              createdAt: new Date(),
+              user: props.currentUser,
+            }]);
+            setInputMessage('');
+            setLinesCount(1);
+          }}
+          onFocus={() => setIsInput(true)}
+          onBlur={() => setIsInput(false)}
+          autoFocus={true}
+          blurOnSubmit={false}
+          spellCheck={false}
+          multiline={true}
+        />
+        <TouchableOpacity
+          style={styles.messageSendView}
+          onPress={() => {
+            props.sendMessage([{_id: 1,
+              text: inputMessage,
+              createdAt: new Date(),
+              user: props.currentUser,
+            }]);
+            setInputMessage('');
+            setLinesCount(1);
+          }}
+        >
+          <IoSend size='25'/>
+        </TouchableOpacity>
+      </View>
+    </View>
+  )
+}
+
+const Chat = (props) => {
+  return (
     <View style={styles.container}>
-      <FlatList
+      {/* <FlatList
         style={{ backgroundColor: '#1e2124' }}
         data={props.messages}
         renderItem={({ item }) => (
@@ -65,60 +131,17 @@ const Chat = (props) => {
             </View>
           </TouchableWithoutFeedback>
         )}
-      />
-
-      <View style={{ paddingVertical: 10 }}>
-        <View style={styles.messageInputView}>
-          <TouchableOpacity
-            style={styles.messageSendView}
-          >
-            <AiOutlineSmile size='25'/>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.messageSendView}
-          >
-            <AiOutlinePaperClip size='25'/>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.messageSendView}
-          >
-            <IoMdMic size='25'/>
-          </TouchableOpacity>
-          <TextInput
-            defaultValue={inputMessage}
-            inputContainerStyle={styles.messageInput}
-            style={isInput ? [styles.messageInput, {outline: 'none', height: 20 + 20 * linesCount}]
-                           : [styles.messageInput, {height: 20 + 20 * linesCount}]}
-            value={inputMessage}
-            placeholder='Message'
-            onChangeText={(text) => {
-              setInputMessage(text);
-              setLinesCount(Math.min(inputMessage.split(/\r\n|\r|\n/).length, 10));
-            }}
-            onSubmitEditing={() => {
-              props.sendMessage(inputMessage);
-              setInputMessage('');
-              setLinesCount(1);
-            }}
-            onFocus={() => setIsInput(true)}
-            onBlur={() => setIsInput(false)}
-            autoFocus={true}
-            blurOnSubmit={false}
-            spellCheck={false}
-            multiline={true}
+      /> */}
+      <GiftedChat
+        messages={props.messages}
+        user={{_id: 1,}}
+        renderInputToolbar={() => (
+          <InputToolbar
+            sendMessage={props.sendMessage}
+            currentUser={props.currentUser}
           />
-          <TouchableOpacity
-            style={styles.messageSendView}
-            onPress={() => {
-              props.sendMessage(inputMessage);
-              setInputMessage('');
-              setLinesCount(1);
-            }}
-          >
-            <IoSend size='25'/>
-          </TouchableOpacity>
-        </View>
-      </View>
+        )}
+      />
     </View>
   );
 };
