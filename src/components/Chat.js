@@ -13,8 +13,38 @@ import { IoSend } from 'react-icons/io5';
 import { IoMdMic } from 'react-icons/io';
 import { AiOutlineSmile, AiOutlinePaperClip } from 'react-icons/ai';
 import { colors } from '../theme';
-import { GiftedChat } from 'react-native-gifted-chat';
-import { Row } from 'react-bootstrap';
+import { Bubble, GiftedChat } from 'react-native-gifted-chat';
+
+const StyledBubble = (props) => {
+  return (
+    <Bubble
+      {...props}
+
+      wrapperStyle={{
+        right: { backgroundColor: '#6665d2', },
+        left: { backgroundColor: '#6665d2' },
+      }}
+
+      containerToPreviousStyle={{
+        right: { borderTopRightRadius: 15 },
+        left: { borderTopLeftRadius: 15 },
+      }}
+      containerToNextStyle={{
+        right: { borderBottomRightRadius: 15 },
+        left: { borderBottomLeftRadius: 15 },
+      }}
+      containerStyle={{
+        right: { borderTopRightRadius: 15 },
+        left: { borderTopLeftRadius: 15 },
+      }}
+
+      textStyle={{
+        left: { color: '#fff', fontSize: 16 },
+        right: { color: '#fff', fontSize: 16 },
+      }}
+    />
+  )
+}
 
 const InputToolbar = (props) => {
   const [isInput, setIsInput] = useState(false);
@@ -89,54 +119,13 @@ const InputToolbar = (props) => {
   )
 }
 
+const MessageBubble = (props) => {
+
+};
+
 const Chat = (props) => {
   return (
     <View style={styles.container}>
-      {/* <FlatList
-        style={{ backgroundColor: '#1e2124' }}
-        data={props.messages}
-        renderItem={({ item }) => (
-          <TouchableWithoutFeedback>
-            <View style={{ marginTop: 6 }}>
-              <View
-                style={{
-                  maxWidth: Dimensions.get('screen').width * 0.8,
-                  backgroundColor: '#6665d2',
-                  alignSelf:
-                    item.sender === props.currentUser.name
-                      ? 'flex-end'
-                      : 'flex-start',
-                  marginHorizontal: 10,
-                  padding: 10,
-                  borderRadius: 8,
-                  borderBottomLeftRadius:
-                    item.sender === props.currentUser.name ? 8 : 0,
-                  borderBottomRightRadius:
-                    item.sender === props.currentUser.name ? 0 : 8,
-                }}
-              >
-                <Text
-                  style={{
-                    color: '#fff',
-                    fontSize: 16,
-                  }}
-                >
-                  {item.message}
-                </Text>
-                <Text
-                  style={{
-                    color: '#dfe4ea',
-                    fontSize: 14,
-                    alignSelf: 'flex-end',
-                  }}
-                >
-                  {item.time}
-                </Text>
-              </View>
-            </View>
-          </TouchableWithoutFeedback>
-        )}
-      /> */}
       <GiftedChat
         messages={props.messages}
         user={{_id: 1,}}
@@ -145,6 +134,9 @@ const Chat = (props) => {
             sendMessage={props.sendMessage}
             currentUser={props.currentUser}
           />
+        )}
+        renderBubble={(props) => (
+          <StyledBubble {...props}/>
         )}
       />
     </View>

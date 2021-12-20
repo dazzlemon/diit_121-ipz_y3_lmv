@@ -3,71 +3,35 @@ import { Chat } from '../components';
 import { GiftedChat } from 'react-native-gifted-chat';
 
 const ChatPage = () => {
-  const [currentUser] = useState({
+  const u2 = {
+    _id: 2,
     name: 'John Doe',
-  });
+    avatar: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F66.media.tumblr.com%2F71bb701a109cff6608ba24bf7ef3f16e%2Ftumblr_pcchwbaHls1x72ag3o1_1280.png&f=1&nofb=1',
+  };
+  const u1 = {
+    _id: 1,
+    name: 'Robert Henry',
+    avatar: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.redd.it%2Fqqa16cl4wbd21.png&f=1&nofb=1'
+  };
 
   const [messages, setMessages] = useState([
-    {
-      _id: 1,
-      text: 'Hello developer',
-      createdAt: new Date(),
-      user: {
-        _id: 2,
-        name: 'React Native',
-        avatar: 'https://facebook.github.io/react/img/logo_og.png',
-      },
-    },
-  ]);
-  
-  // const [messages, setMessages] = useState([
-  //   { sender: 'John Doe', message: 'Hey there!', time: '6:01 PM' },
-  //   {
-  //     sender: 'Robert Henry',
-  //     message: 'Hello, how are you doing?',
-  //     time: '6:02 PM',
-  //   },
-  //   {
-  //     sender: 'John Doe',
-  //     message: 'I am good, how about you?',
-  //     time: '6:02 PM',
-  //   },
-  //   {
-  //     sender: 'John Doe',
-  //     message: `😊😇`,
-  //     time: '6:02 PM',
-  //   },
-  //   {
-  //     sender: 'Robert Henry',
-  //     message: `Can't wait to meet you.`,
-  //     time: '6:03 PM',
-  //   },
-  //   {
-  //     sender: 'John Doe',
-  //     message: `That's great, when are you coming?`,
-  //     time: '6:03 PM',
-  //   },
-  //   {
-  //     sender: 'Robert Henry',
-  //     message: `This weekend.`,
-  //     time: '6:03 PM',
-  //   },
-  //   {
-  //     sender: 'Robert Henry',
-  //     message: `Around 4 to 6 PM.`,
-  //     time: '6:04 PM',
-  //   },
-  //   {
-  //     sender: 'John Doe',
-  //     message: `Great, don't forget to bring me some mangoes.`,
-  //     time: '6:05 PM',
-  //   },
-  //   {
-  //     sender: 'Robert Henry',
-  //     message: `Sure!`,
-  //     time: '6:05 PM',
-  //   },
-  // ]);
+    { _id: 1, text: 'Hey there!', createdAt: new Date(), user: u1 },
+    { _id: 2, text: 'Hello, how are you doing?', createdAt: new Date(), user: u2 },
+    { _id: 3, text: 'I am good, how about you?', createdAt: new Date(), user: u1 },
+    { _id: 4, text: `😊😇`, createdAt: new Date(), user: u1 },
+    { _id: 5, text: `Can't wait to meet you.`, createdAt: new Date(), user: u2 },
+    { _id: 6, text: `That's great, when are you coming?`, createdAt: new Date(), user: u1 },
+    { _id: 7, text: `This weekend.`, createdAt: new Date(), user: u2 },
+    { _id: 8, text: `Around 4 to 6 PM.`, createdAt: new Date(), user: u2 },
+    { _id: 9, text: `Great, don't forget to bring me some mangoes.`, createdAt: new Date(), user: u1 },
+    { _id: 10, text: `Sure!`, createdAt: new Date(), user: u2 },
+    { _id: 11, text: '1', createdAt: new Date(), user: u1},
+    { _id: 12, text: '2', createdAt: new Date(), user: u1},
+    { _id: 13, text: '3', createdAt: new Date(), user: u1},
+    { _id: 14, text: '1', createdAt: new Date(), user: u2},
+    { _id: 15, text: '2', createdAt: new Date(), user: u2},
+    { _id: 16, text: '3', createdAt: new Date(), user: u2},
+  ].reverse());
 
   function getTime(date) {
     var hours = date.getHours();
@@ -91,11 +55,6 @@ const ChatPage = () => {
       messages={messages}
       currentUser={{_id: 1,}}
     />
-    {/* <GiftedChat
-      messages={messages}
-      onSend={sendMessage}
-      user={{_id: 1,}}
-    /> */}
   </>
   );
 }
