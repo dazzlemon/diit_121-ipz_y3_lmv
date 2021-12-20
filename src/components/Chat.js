@@ -21,21 +21,17 @@ const StyledBubble = (props) => {
       {...props}
 
       wrapperStyle={{
-        right: { backgroundColor: '#6665d2', },
-        left: { backgroundColor: '#6665d2' },
+        right: { backgroundColor: '#6665d2', borderRadius: 20 },
+        left: { backgroundColor: '#6665d2', borderRadius: 20 },
       }}
 
       containerToPreviousStyle={{
-        right: { borderTopRightRadius: 15 },
-        left: { borderTopLeftRadius: 15 },
+        right: { borderTopRightRadius: 5 },
+        left: { borderTopLeftRadius: 5 },
       }}
       containerToNextStyle={{
-        right: { borderBottomRightRadius: 15 },
-        left: { borderBottomLeftRadius: 15 },
-      }}
-      containerStyle={{
-        right: { borderTopRightRadius: 15 },
-        left: { borderTopLeftRadius: 15 },
+        right: { borderBottomRightRadius: 5 },
+        left: { borderBottomLeftRadius: 5 },
       }}
 
       textStyle={{
