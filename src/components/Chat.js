@@ -14,6 +14,7 @@ import { IoMdMic } from 'react-icons/io';
 import { AiOutlineSmile, AiOutlinePaperClip } from 'react-icons/ai';
 import { colors } from '../theme';
 import { Bubble, GiftedChat } from 'react-native-gifted-chat';
+import { position } from 'dom-helpers';
 
 const StyledBubble = (props) => {
   return (
@@ -124,6 +125,7 @@ const Chat = (props) => {
       <GiftedChat
         messages={props.messages}
         user={{_id: 1,}}
+        minInputToolbarHeight={0}
         renderInputToolbar={() => null}
         renderBubble={(props) => (
           <StyledBubble {...props}/>
@@ -141,16 +143,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#1e2124',
-    height: '100%'
   },
   messageInputView: {
     display: 'flex',
     flexDirection: 'row',
     // marginHorizontal: 14,
     // backgroundColor: '#fff',
-    bottom: 0,
-    left: 0,
-    right: 0,
   },
   messageInput: {
     paddingTop: 10,
