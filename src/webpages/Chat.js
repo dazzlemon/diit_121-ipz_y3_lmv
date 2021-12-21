@@ -84,7 +84,13 @@ const ChatPage = () => {
 
   const [mobileShowChat, setMobileShowChat] = useState(false);// show chatList if false
   
-  const openChat = (_id) => alert(`open Chat with id ${_id}`)
+  const openChat = (_id) => {
+    if (_id == 1) {
+      setMobileShowChat(true);
+    } else {
+      alert(`open Chat with id ${_id}`)
+    }
+  }
 
   const renderChatList = () => (
     <ChatList
