@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Chat, ChatList } from '../components';
 import { GiftedChat } from 'react-native-gifted-chat';
-import { View, Dimensions, Text } from 'react-native';
+import { View, Dimensions, TouchableOpacity } from 'react-native';
+import { IoMdArrowRoundBack } from 'react-icons/io';
+import { colors } from '../theme';
 
 const ChatPage = () => {
   const u2 = {
@@ -86,7 +88,7 @@ const ChatPage = () => {
   
   const openChat = (_id) => {
     if (_id == 1) {
-      setMobileShowChat(true);
+      setMobileShowChat(true)
     } else {
       alert(`open Chat with id ${_id}`)
     }
@@ -105,6 +107,18 @@ const ChatPage = () => {
       messages={messages}
       currentUser={u1}
     />
+  )
+
+  const renderHeader = () => (
+    <View style={{
+      padding: 5,
+      backgroundColor: colors.itemBgColor,
+      color: colors.itemFontColor,
+    }}>
+      <TouchableOpacity onPress={() => setMobileShowChat(false)}>
+        <IoMdArrowRoundBack size='35'/>
+      </TouchableOpacity>
+    </View>
   )
 
   if (aspectRatio > 1) {
@@ -128,7 +142,10 @@ const ChatPage = () => {
       <View style={{
         position: 'absolute',
         inset: '0 0 0 0',// fullscreen
+        backgroundColor: colors.itemBg,
       }}>
+        
+        {renderHeader()}
         {renderChat()}
       </View>
     )
