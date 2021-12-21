@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Chat, ChatList } from '../components';
 import { GiftedChat } from 'react-native-gifted-chat';
-import { View } from 'react-native';
+import { View, Dimensions, Text } from 'react-native';
 
 const ChatPage = () => {
   const u2 = {
@@ -70,21 +70,50 @@ const ChatPage = () => {
     
   ];
 
+  const [aspectRatio, setAspectRatio] = useState(Dimensions.get('window').width / Dimensions.get('window').height);
+
+  useEffect(() => {
+    const subscription = Dimensions.addEventListener(
+      'change',
+      ({ window }) => {
+        setAspectRatio( window.width / window.height );
+      }
+    );
+    return () => subscription?.remove();
+  });
+
+  if (aspectRatio > 1) {
+    return (
+      <View style={{
+        position: 'absolute',
+        inset: '0 0 0 0',// fullscreen
+        display: 'grid',
+      }}>
+        <View style={{'grid-column': '1 / 2'}}>
+          <ChatList chats={chats}/>
+        </View>
+        <View style={{'grid-column': '2 / 6'}}>
+          <Chat
+            sendMessage={sendMessage}
+            messages={messages}
+            currentUser={u1}
+          />
+        </View>
+      </View>
+    )
+  }
   return (
-  <View style={{
-    position: 'absolute',
-    inset: '0 0 0 0',// fullscreen
-    display: 'flex',
-    flexDirection: 'row',
-  }}>
-    <ChatList chats={chats}/>
-    <Chat
-      sendMessage={sendMessage}
-      messages={messages}
-      currentUser={u1}
-    />
-  </View>
-  );
+    <View style={{
+      position: 'absolute',
+      inset: '0 0 0 0',// fullscreen
+    }}>
+      <Chat
+        sendMessage={sendMessage}
+        messages={messages}
+        currentUser={u1}
+      />
+    </View>
+  )
 }
 
 export default ChatPage;
