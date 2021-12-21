@@ -144,7 +144,6 @@ const ChatPage = () => {
         inset: '0 0 0 0',// fullscreen
         backgroundColor: colors.itemBg,
       }}>
-        
         {renderHeader()}
         {renderChat()}
       </View>

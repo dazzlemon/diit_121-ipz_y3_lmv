@@ -68,16 +68,19 @@ const InputToolbar = (props) => {
     <View style={styles.messageInputView}>
       <TouchableOpacity
         style={styles.messageSendView}
+        onPress={() => alert('open smiles')}
       >
         <AiOutlineSmile size='25'/>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.messageSendView}
+        onPress={() => alert('send file or smth')}
       >
         <AiOutlinePaperClip size='25'/>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.messageSendView}
+        onPress={() => alert('send voice message')}
       >
         <IoMdMic size='25'/>
       </TouchableOpacity>
@@ -121,15 +124,14 @@ const Chat = (props) => {
       <GiftedChat
         messages={props.messages}
         user={{_id: 1,}}
-        renderInputToolbar={() => (
-          <InputToolbar
-            sendMessage={props.sendMessage}
-            currentUser={props.currentUser}
-          />
-        )}
+        renderInputToolbar={() => null}
         renderBubble={(props) => (
           <StyledBubble {...props}/>
         )}
+      />
+      <InputToolbar
+        sendMessage={props.sendMessage}
+        currentUser={props.currentUser}
       />
     </View>
   );
@@ -139,12 +141,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#1e2124',
+    height: '100%'
   },
   messageInputView: {
     display: 'flex',
     flexDirection: 'row',
     // marginHorizontal: 14,
     // backgroundColor: '#fff',
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
   messageInput: {
     paddingTop: 10,
