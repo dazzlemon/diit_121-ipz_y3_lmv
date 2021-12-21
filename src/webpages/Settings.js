@@ -1,8 +1,10 @@
-import React from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar } from 'react-native';
+import React, {useState} from 'react';
+import {FlatList, SafeAreaView, View, StatusBar, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import {sizes, colors} from '../theme';
 
 const Settings = () => {
+    const [selectedId, setSelectedId] = useState(null);
+
     const DATA = [
         {
           id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -18,23 +20,44 @@ const Settings = () => {
         },
       ];
 
-      const Item = ({ title }) => (
-        <View style={styles.item}>
-          <Text style={styles.title}>{title}</Text>
-        </View>
+      const Item = ({ item, onPress, backgroundColor, textColor }) => (
+        <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+          <Text style={[styles.title, textColor]}>{item.title}</Text>
+        </TouchableOpacity>
       );
 
-      const renderItem = ({ item }) => (
-        <Item title={item.title} />
-      );
+      const renderItem = ({ item }) => {
+        const backgroundColor = item.id === selectedId ? "#6665d2" : "red";
+        const color = item.id === selectedId ? 'white' : 'black';
+        return (
+          <Item
+          item={item}
+          onPress={() => setSelectedId(item.id)}
+          backgroundColor={{ backgroundColor }}
+          textColor={{ color }}
+        />
+        )
+      };
 
       return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, {
+          // Try setting `flexDirection` to `"row"`.
+          flexDirection: "row"
+        }]}>
           <FlatList
             data={DATA}
             renderItem={renderItem}
             keyExtractor={item => item.id}
+            extraData={selectedId}
           />
+         <View style={{ flex: 6, backgroundColor: "darkorange" }}>
+         <FlatList
+            data={DATA}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+            extraData={selectedId}
+          />
+         </View>
         </SafeAreaView>
       );
 }
@@ -54,7 +77,7 @@ const styles = StyleSheet.create({
       marginHorizontal: 16,
     },
     title: {
-      color: colors.white,
+      color: colors.itemFontColor,
       textAlign: 'center',
       padding: 10,
       fontWeight: 'bold',
