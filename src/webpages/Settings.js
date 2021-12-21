@@ -80,16 +80,17 @@ const Settings = () => {
           // Try setting `flexDirection` to `"row"`.
           flexDirection: "row"
         }]}>
-          <FlatList
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-            extraData={selectedId}
-          />
-         <View style={{ flex: 20, backgroundColor: "#36393F" }}>
-         <FlatList
-
-          />
+          <View>
+            <FlatList
+              data={DATA}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+              extraData={selectedId}
+            />
+          </View>
+         <View style={ styles.mainContent}>
+          <Text stlye ={ styles.header}> My Account </Text>
+          
          </View>
         </SafeAreaView>
       );
@@ -99,21 +100,33 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.itemBg,
+        color: colors.itemFontColor,
         position: 'absolute',
         inset: '0 0 0 0',// fullscreen
+    },
+    mainContent: {
+      flex: 20,
+      backgroundColor: "#36393F",
+      paddingLeft: 20
+    },
+    header: {
+      color:'#ffffff',
+      fontSize: 28,
+      fontStyle: 'bold'
     },
     item: {
       backgroundColor: colors.itemBg,
       borderRadius: sizes.borderRadius,
       padding: 1,
       marginVertical: 6,
-      marginHorizontal: 1,
+      marginHorizontal: 16,
     },
     title: {
       color: colors.itemFontColor,
       textAlign: 'left',
       padding: 4,
-      marginLeft: 80,
+      marginLeft: 60,
+      marginRight: 20,
       fontSize: 14,
     },
   });
