@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlatList, Image, View, Text, StyleSheet } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { colors } from '../theme';
 
 const styles = StyleSheet.create({
@@ -31,23 +32,25 @@ const styles = StyleSheet.create({
 
 const ChatItem = (props) => {
   return (
-    <View style={styles.container}>
-      <View style={{padding: 10}}>
-        <Image
-          style={styles.avatar}
-          source={{uri: props.avatar}}
-        />
-      </View>
-      <View>
-        <Text style={styles.chatName}>{props.chatName}</Text>
-        <Text style={styles.messageAuthor}>
-          {props.lastMessage ? `${props.lastMessage.author}: ` : ''}
-          <Text style={styles.message}> 
-            {props.lastMessage ? `${props.lastMessage.text}` : ''}
+    <TouchableWithoutFeedback onPress={props.onPress}>
+      <View style={styles.container}>
+        <View style={{padding: 10}}>
+          <Image
+            style={styles.avatar}
+            source={{uri: props.avatar}}
+          />
+        </View>
+        <View>
+          <Text style={styles.chatName}>{props.chatName}</Text>
+          <Text style={styles.messageAuthor}>
+            {props.lastMessage ? `${props.lastMessage.author}: ` : ''}
+            <Text style={styles.message}> 
+              {props.lastMessage ? `${props.lastMessage.text}` : ''}
+            </Text>
           </Text>
-        </Text>
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -62,6 +65,7 @@ const ChatList = (props) => {
           text: item.lastMessage?.text,
           date: item.lastMessage?.createdAt,
         } : null}
+        onPress={() => props.openChat(item._id)}
       />
     )
   }

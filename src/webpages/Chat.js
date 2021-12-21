@@ -82,6 +82,25 @@ const ChatPage = () => {
     return () => subscription?.remove();
   });
 
+  const [mobileShowChat, setMobileShowChat] = useState(false);// show chatList if false
+  
+  const openChat = (_id) => alert(`open Chat with id ${_id}`)
+
+  const renderChatList = () => (
+    <ChatList
+      chats={chats}
+      openChat={openChat}
+    />
+  )
+
+  const renderChat = () => (
+    <Chat
+      sendMessage={sendMessage}
+      messages={messages}
+      currentUser={u1}
+    />
+  )
+
   if (aspectRatio > 1) {
     return (
       <View style={{
@@ -90,15 +109,21 @@ const ChatPage = () => {
         display: 'grid',
       }}>
         <View style={{'grid-column': '1 / 2'}}>
-          <ChatList chats={chats}/>
+          {renderChatList()}
         </View>
         <View style={{'grid-column': '2 / 6'}}>
-          <Chat
-            sendMessage={sendMessage}
-            messages={messages}
-            currentUser={u1}
-          />
+          {renderChat()}
         </View>
+      </View>
+    )
+  }
+  if (mobileShowChat) {
+    return (
+      <View style={{
+        position: 'absolute',
+        inset: '0 0 0 0',// fullscreen
+      }}>
+        {renderChat()}
       </View>
     )
   }
@@ -107,11 +132,7 @@ const ChatPage = () => {
       position: 'absolute',
       inset: '0 0 0 0',// fullscreen
     }}>
-      <Chat
-        sendMessage={sendMessage}
-        messages={messages}
-        currentUser={u1}
-      />
+      {renderChatList()}
     </View>
   )
 }
