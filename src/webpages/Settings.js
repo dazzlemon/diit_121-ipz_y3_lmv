@@ -58,7 +58,7 @@ const Settings = () => {
 
       const Item = ({ item, onPress, backgroundColor, textColor }) => (
         <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-          <Text style={[styles.title, textColor]}>{item.title}</Text>
+          <Text style={[styles.itemTitle, textColor]}>{item.title}</Text>
         </TouchableOpacity>
       );
 
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
       marginVertical: 6,
       marginHorizontal: 16,
     },
-    title: {
+    itemTitle: {
       color: colors.itemFontColor,
       textAlign: 'left',
       padding: 4,
