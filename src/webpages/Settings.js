@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import {FlatList, SafeAreaView, View, StatusBar, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import {sizes, colors} from '../theme';
 
@@ -56,9 +56,9 @@ const Settings = () => {
         },
       ];
 
-      const Item = ({ item, onPress, backgroundColor, textColor }) => (
+      const Item = ({ item, onPress, backgroundColor, textColor, titleBackgroundColor }) => (
         <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-          <Text style={[styles.itemTitle, textColor]}>{item.title}</Text>
+          <Text style={[styles.itemTitle, textColor, titleBackgroundColor]}>{item.title}</Text>
         </TouchableOpacity>
       );
 
@@ -67,16 +67,16 @@ const Settings = () => {
         const color = item.id === selectedId ? 'white' : colors.itemFontColor;
         return (
           <Item
+          titleBackgroundColor = {{ backgroundColor }}
           item={item}
           onPress={() => setSelectedId(item.id)}
-          backgroundColor={{ backgroundColor }}
           textColor={{ color }}
         />
         )
       };
 
       return (
-        <SafeAreaView style={[styles.container, {
+        <View style={[styles.container, {
           // Try setting `flexDirection` to `"row"`.
           flexDirection: "row"
         }]}>
@@ -88,11 +88,13 @@ const Settings = () => {
               extraData={selectedId}
             />
           </View>
-         <View style={ styles.mainContent}>
-          <Text stlye ={ styles.header}> My Account </Text>
-          
+         <View style ={ styles.mainContent}>
+          <Text style ={ styles.header}> My Account </Text>
+          <View style = {styles.profileBox}>
+
+          </View>
          </View>
-        </SafeAreaView>
+        </View>
       );
 }
 
@@ -114,6 +116,14 @@ const styles = StyleSheet.create({
       fontSize: 28,
       fontStyle: 'bold'
     },
+    profileBox: {
+      width: 800,
+      height: 500,
+      margin: 10,
+      borderRadius: 15,
+      padding: 10,
+      backgroundColor:"#ffffff"
+    },
     item: {
       backgroundColor: colors.itemBg,
       borderRadius: sizes.borderRadius,
@@ -124,6 +134,7 @@ const styles = StyleSheet.create({
     itemTitle: {
       color: colors.itemFontColor,
       textAlign: 'left',
+      backgroundColor: 'red',
       padding: 4,
       marginLeft: 60,
       marginRight: 20,
