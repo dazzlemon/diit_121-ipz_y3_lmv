@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/diit_121-ipz_y3_lmv/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/diit_121-ipz_y3_lmv/static/js/main.9a82842b.chunk.js",
-    "main.js.map": "/diit_121-ipz_y3_lmv/static/js/main.9a82842b.chunk.js.map",
-    "runtime-main.js": "/diit_121-ipz_y3_lmv/static/js/runtime-main.70e1fe6d.js",
-    "runtime-main.js.map": "/diit_121-ipz_y3_lmv/static/js/runtime-main.70e1fe6d.js.map",
-    "static/js/2.86532aca.chunk.js": "/diit_121-ipz_y3_lmv/static/js/2.86532aca.chunk.js",
-    "static/js/2.86532aca.chunk.js.map": "/diit_121-ipz_y3_lmv/static/js/2.86532aca.chunk.js.map",
-    "static/js/3.d219732e.chunk.js": "/diit_121-ipz_y3_lmv/static/js/3.d219732e.chunk.js",
-    "static/js/3.d219732e.chunk.js.map": "/diit_121-ipz_y3_lmv/static/js/3.d219732e.chunk.js.map",
+    "main.css": "/diit_121-ipz_y3_lmv/static/css/main.2ae47eeb.chunk.css",
+    "main.js": "/diit_121-ipz_y3_lmv/static/js/main.9c8ab90e.chunk.js",
+    "main.js.map": "/diit_121-ipz_y3_lmv/static/js/main.9c8ab90e.chunk.js.map",
+    "runtime-main.js": "/diit_121-ipz_y3_lmv/static/js/runtime-main.fb900040.js",
+    "runtime-main.js.map": "/diit_121-ipz_y3_lmv/static/js/runtime-main.fb900040.js.map",
+    "static/js/2.ef2066fb.chunk.js": "/diit_121-ipz_y3_lmv/static/js/2.ef2066fb.chunk.js",
+    "static/js/2.ef2066fb.chunk.js.map": "/diit_121-ipz_y3_lmv/static/js/2.ef2066fb.chunk.js.map",
+    "static/js/3.3687dba3.chunk.js": "/diit_121-ipz_y3_lmv/static/js/3.3687dba3.chunk.js",
+    "static/js/3.3687dba3.chunk.js.map": "/diit_121-ipz_y3_lmv/static/js/3.3687dba3.chunk.js.map",
     "index.html": "/diit_121-ipz_y3_lmv/index.html",
-    "static/css/main.6dea0f05.chunk.css.map": "/diit_121-ipz_y3_lmv/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.86532aca.chunk.js.LICENSE.txt": "/diit_121-ipz_y3_lmv/static/js/2.86532aca.chunk.js.LICENSE.txt"
+    "static/css/main.2ae47eeb.chunk.css.map": "/diit_121-ipz_y3_lmv/static/css/main.2ae47eeb.chunk.css.map",
+    "static/js/2.ef2066fb.chunk.js.LICENSE.txt": "/diit_121-ipz_y3_lmv/static/js/2.ef2066fb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.70e1fe6d.js",
-    "static/js/2.86532aca.chunk.js",
-    "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.9a82842b.chunk.js"
+    "static/js/runtime-main.fb900040.js",
+    "static/js/2.ef2066fb.chunk.js",
+    "static/css/main.2ae47eeb.chunk.css",
+    "static/js/main.9c8ab90e.chunk.js"
   ]
 }
