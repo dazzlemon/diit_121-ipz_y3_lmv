@@ -11,6 +11,7 @@ module.exports = override(
     path.resolve(__dirname, 'node_modules/react-native-ratings'),
     path.resolve(__dirname, 'node_modules/react-native-vector-icons'),
     path.resolve(__dirname, 'node_modules/react-native-markdown-package'),
+    path.resolve(__dirname, 'node_modules/react-native-styled-components'),
     path.resolve(__dirname, 'node_modules/react-native-gifted-chat/lib'),
     path.resolve(__dirname, 'src'),
   ]),
