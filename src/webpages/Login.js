@@ -4,6 +4,7 @@ import { BoxedBg, CheckInput } from '../components';
 import { View } from 'react-native';
 import { styles } from '../theme';
 import { Link } from 'react-router-native';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => (
     <BoxedBg content = {<LoginForm/>}/>
@@ -18,6 +19,7 @@ const LoginForm = () => {
     const [forgotPassword, setForgotPassword] = useState(false);
     const [badCredentials, setBadCredentials] = useState(false);
     const [emailDoesntExist, setEmailDoesntExist] = useState(false);
+    let navigate = useNavigate();
 
     return (
         <>
@@ -88,8 +90,9 @@ and spam folder.
                         }
 
                         if (email == 'registered@email.com' && password == '12345') {
-                            setBadCredentials(false);
-                            alert('successfull login');
+                            // setBadCredentials(false);
+                            // alert('successfull login');
+                            navigate('/chat')
                         } else {
                             setBadCredentials(true);
                         }
