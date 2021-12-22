@@ -130,6 +130,7 @@ const Chat = (props) => {
         renderBubble={(props) => (
           <StyledBubble {...props}/>
         )}
+        onPressAvatar={(user) => alert(`open profile of user with id=${user._id}`)}
       />
       <InputToolbar
         sendMessage={props.sendMessage}
